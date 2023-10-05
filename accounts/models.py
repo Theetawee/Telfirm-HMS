@@ -13,11 +13,12 @@ class MedicalWorker(AbstractUser):
         choices=SPECIALIZATION_CHOICES,
         default=OTHER,
     )
+    email=models.EmailField(unique=True)
     license_number = models.CharField(max_length=20, blank=True)
     department = models.ForeignKey('Department', on_delete=models.SET_NULL, null=True, blank=True)
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email', 'first_name', 'last_name']
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username','first_name', 'last_name']
 
     def __str__(self):
         return self.username

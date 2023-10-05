@@ -23,6 +23,11 @@ ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = "accounts.MedicalWorker"
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.EmailOrUsernameBackend',
+]
+
 
 # Application definition
 
