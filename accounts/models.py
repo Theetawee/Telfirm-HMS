@@ -4,9 +4,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 from .utils import SPECIALIZATION_CHOICES,OTHER
 
 
-
-
-
 class MedicalWorker(AbstractUser):
     phone = PhoneNumberField(null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
@@ -24,6 +21,7 @@ class MedicalWorker(AbstractUser):
 
     def __str__(self):
         return self.username
+
 
 class Department(models.Model):
     name = models.CharField(max_length=100)

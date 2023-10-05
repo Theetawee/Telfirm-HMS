@@ -15,10 +15,10 @@ if settings.DEBUG:
     urlpatterns  += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
-handler404 = 'main.views.custom_404_view'
-handler400 = 'main.views.custom_404_view'
-handler500 = 'main.views.custom_500_view'
-handler403 = 'main.views.custom_404_view'
+handler404 = 'main.utils.custom_404_view'
+handler400 = 'main.utils.custom_404_view'
+handler500 = 'main.utils.custom_500_view'
+handler403 = 'main.utils.custom_404_view'
 
 admin.site.site_header='App name'
 admin.site.site_title='App Admin'
