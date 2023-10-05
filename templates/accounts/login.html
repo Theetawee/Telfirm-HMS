@@ -14,7 +14,7 @@
         {% endif %}
 
         <div class="px-6 pb-6 space-y-4 md:space-y-6 sm:px-8">
-          <form class="space-y-4 md:space-y-6" id="form" action="{% url 'login' %}" method="post">
+          <form class="space-y-4 md:space-y-6" id="auth_form" action="{% url 'login' %}" method="post">
             {% csrf_token %}
             <div>
               <label for="id_username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email or Username</label>
