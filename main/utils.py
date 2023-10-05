@@ -8,7 +8,7 @@ from django.views.generic import View
 
 
 def offline(request):
-    return render(request, "main/offline.html")
+    return render(request, "base/offline.html")
 
 
 class RobotsTxtView(View):

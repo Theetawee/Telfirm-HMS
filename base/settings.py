@@ -168,3 +168,7 @@ EMAIL_USE_TLS = True
 MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
+
+
+LOGIN_URL= 'login'
+
