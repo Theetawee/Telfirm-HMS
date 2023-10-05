@@ -1,0 +1,18 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+{% load redotags %}
+
+<section class="bg-white dark:bg-gray-900 h-[60vh] flex items-center justify-center">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
+        <div class="mx-auto max-w-screen-sm text-center">
+            <h1 class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">Password Reset Link Sent</h1>
+            <p class=" font-light text-gray-500 dark:text-gray-400">
+                We've sent you an email with instructions on how to reset your password.
+                Please check your email inbox, including your spam folder, and follow the provided link to reset your password.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

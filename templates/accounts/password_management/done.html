@@ -1,0 +1,17 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+{% load redotags %}
+
+<section class="bg-white dark:bg-gray-900 h-[60vh] flex items-center justify-center">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
+        <div class="mx-auto max-w-screen-sm text-center">
+            <h1 class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">Password successfully reset</h1>
+            <p class="font-light text-gray-500 dark:text-gray-400">
+                Your password has been successfully reset.
+            </p>
+            <a href="{% url 'login' %}" class="mt-4 text-primary-500 hover:underline">Login</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

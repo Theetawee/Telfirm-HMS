@@ -12,7 +12,6 @@
             {% endfor %}
           </ul>
         {% endif %}
-
         <div class="px-6 pb-6 space-y-4 md:space-y-6 sm:px-8">
           <form class="space-y-4 md:space-y-6" id="auth_form" action="{% url 'login' %}" method="post">
             {% csrf_token %}
@@ -28,7 +27,7 @@
             <div class="mt-4 text-center">
               <a href="#" class="text-primary-500 text-sm hover:underline">Documentation</a>
               <span class="text-gray-400 mx-2">|</span>
-              <a href="#" class="text-primary-500 text-sm hover:underline">Forgot Password</a>
+              <a href="{% url 'reset_password' %}" class="text-primary-500 text-sm hover:underline">Forgot Password</a>
             </div>
           </form>
         </div>
