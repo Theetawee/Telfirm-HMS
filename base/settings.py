@@ -21,7 +21,7 @@ DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = ["*"]
 
-AUTH_USER_MODEL = "accounts.Account"
+AUTH_USER_MODEL = "accounts.MedicalWorker"
 
 
 # Application definition
