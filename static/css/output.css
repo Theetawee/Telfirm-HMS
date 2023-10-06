@@ -1438,6 +1438,10 @@ input:checked + .toggle-bg{
   border-radius: 0.125rem;
 }
 
+.rounded-\[4px\]{
+  border-radius: 4px;
+}
+
 .rounded-l-lg{
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
