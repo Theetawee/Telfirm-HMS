@@ -1,9 +1,11 @@
+{% load static %}
 <header class="bg-white p-4 shadow fixed top-0 left-0 w-full">
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
             <div>
-                <a href="" class="text-xl font-semibold">
-                    Dashboard
+                <a href="" class="flex items-center gap-2">
+                    <img src="{% static 'images/logo.svg'%}" class="w-10 h-10" alt="MedSync Logo">
+                    <span class="text-xl font-semibold text-gray-600">MedSync</span>
                 </a>
             </div>
             
