@@ -80,35 +80,21 @@
                     </div>  
                     
             </div>
+            <div class="mb-12">
             <h2 class="text-xl font-medium mb-4">Tests to be done</h2>
-            <div class="grid grid-cols-4 gap-6 mb-12">
+            <div class="grid grid-cols-4">
+                {% for test in form.tests %}
                 <div>
-                    <h2>Microbiology tests</h2>
-                    {{form.micro}}
+                    {{test}}
                 </div>
-                <div>
-                    <h2>Parasitology tests</h2>
-                    {{form.parasitology}}
-                </div>
-                <div>
-                    <h2>Haematology tests</h2>
-                    {{form.haematology}}
-                </div>
-                <div>
-                    <h2>Clinical Chemistry tests</h2>
-                    {{form.chemistry}}
-                </div>
-                <div>
-                    <h2>Immunology tests</h2>
-                    {{form.immunology}}
-                </div>
+                {% endfor %}
+            </div>
             </div>
             <div>
                 <div class="max-w-xs ml-auto">
             {% include 'accounts/Button.html' with action="Next" %}
             </div>
             </div>
-            
         </form>
 
 

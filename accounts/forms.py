@@ -1,5 +1,6 @@
 from django import forms
 from .models import Patient
+from .models import Test
 
 class PatientRegistrationForm(forms.ModelForm):
     class Meta:
@@ -19,13 +20,12 @@ class PatientRegistrationForm(forms.ModelForm):
             'emergency_contact_name',
             'emergency_contact_number',
             'comments',
-            'micro',
-            'parasitology',
-            'haematology',
-            'chemistry',
-            'immunology'
+            'tests'
         ]
 
     date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-
-    
+    tests = forms.ModelMultipleChoiceField(
+        queryset=Test.objects.all(),  # Provide the queryset of available tests
+        widget=forms.CheckboxSelectMultiple,  # Use CheckboxSelectMultiple for multiple selections
+        required=False,  # Set to True if it's required
+    )
