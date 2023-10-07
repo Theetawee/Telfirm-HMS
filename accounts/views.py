@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login,logout
 from .forms import PatientRegistrationForm
+from .models import Patient
 
 
 def login_view(request):
@@ -49,3 +50,12 @@ def new_patient(request):
         form = PatientRegistrationForm()
         context = {'form': form}
         return render(request, 'accounts/patient/new.html', context)
+
+
+def results(request,mrn):
+    patient=get_object_or_404(Patient,medical_record_number=mrn)
+    context={
+        'patient':patient,
+        'results':results
+    }
+    return render(request,'accounts/patient/results.html',context)

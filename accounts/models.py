@@ -7,17 +7,12 @@ from .utils import (
     GENDER_CHOICES,
     STATUS_CHOICES,
     WARD,
-    MICROBIOLOGY_TESTS_CHOICES,
-    PARASITOLOGY_TESTS_CHOICES,
-    IMMUNOLOGY_TESTS_CHOICES,
-    CHEMISTRY_TESTS_CHOICES,
-    HAEMATOLOGY_TESTS_CHOICES,
+    RESULTS_FAST,RESULTS_STATUS
 )
 import random
 import string
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from multiselectfield import MultiSelectField
 from datetime import date
 
 
@@ -53,7 +48,13 @@ class Department(models.Model):
 class Test(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-
+    results_fast=models.CharField(choices=RESULTS_FAST,max_length=100,null=True,blank=True)
+    other_results=models.TextField(null=True,blank=True)
+    status=models.CharField(choices=RESULTS_STATUS,default='Pending',max_length=100)
+    done_by=models.ForeignKey(MedicalWorker,on_delete=models.SET_NULL,null=True)
+    date=models.DateTimeField(null=True,blank=True)
+    confirmed=models.BooleanField(default=False)
+    
     
     def __str__(self):
         return self.name
@@ -101,6 +102,14 @@ class Patient(models.Model):
 
     class Meta:
         ordering=['-id']
+
+
+
+    
+    
+
+
+
 
 @receiver(post_save, sender=Patient)
 def assign_mrn(sender, instance, created, **kwargs):
