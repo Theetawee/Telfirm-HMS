@@ -1,7 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
-from .utils import SPECIALIZATION_CHOICES,OTHER
+from .utils import SPECIALIZATION_CHOICES,OTHER,GENDER_CHOICES,STATUS_CHOICES,WARD,MICROBIOLOGY_TESTS_CHOICES,PARASITOLOGY_TESTS_CHOICES,IMMUNOLOGY_TESTS_CHOICES,CHEMISTRY_TESTS_CHOICES,HAEMATOLOGY_TESTS_CHOICES
+import random
+import string
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from multiselectfield import MultiSelectField
 
 
 class MedicalWorker(AbstractUser):
@@ -29,3 +34,73 @@ class Department(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+
+class Patient(models.Model):
+    
+    # Personal Information
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField()
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    contact_number = models.CharField(max_length=15, blank=True, null=True)
+    address = models.CharField(max_length=500,blank=True, null=True)
+
+    # Medical Information
+    medical_record_number = models.CharField(max_length=12, unique=True)
+    admission_date = models.DateTimeField(auto_now_add=True)
+    discharge_date = models.DateTimeField(blank=True, null=True)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES)
+    ward=models.CharField(max_length=3,choices=WARD)
+
+    # Medical History
+    allergies = models.TextField(blank=True, null=True)
+    current_medications = models.TextField(blank=True, null=True)
+    medical_conditions = models.TextField(blank=True, null=True)
+
+    # Emergency Contact
+    emergency_contact_name = models.CharField(max_length=100, blank=True, null=True)
+    emergency_contact_number = models.CharField(max_length=15, blank=True, null=True)
+
+    # Additional Information
+    comments = models.TextField(blank=True, null=True)
+    
+    # tests
+    micro=MultiSelectField(choices=MICROBIOLOGY_TESTS_CHOICES,max_length=300, max_choices=300,blank=True,null=True)
+    
+    # Parasitology Tests
+    parasitology = MultiSelectField(choices=PARASITOLOGY_TESTS_CHOICES, max_length=300, max_choices=300,blank=True,null=True)
+
+    # Haematology Tests
+    haematology = MultiSelectField(choices=HAEMATOLOGY_TESTS_CHOICES, max_length=300, max_choices=300,blank=True,null=True)
+
+    # Chemistry Tests
+    chemistry = MultiSelectField(choices=CHEMISTRY_TESTS_CHOICES, max_length=300, max_choices=300,blank=True,null=True)
+
+    # Immunology Tests
+    immunology = MultiSelectField(choices=IMMUNOLOGY_TESTS_CHOICES, max_length=300, max_choices=300,blank=True,null=True)
+
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} (MRN: {self.medical_record_number})"
+
+
+
+
+
+@receiver(post_save, sender=Patient)
+def assign_mrn(sender, instance, created, **kwargs):
+    if created:
+        while True:
+            # Generate a new MRN
+            initials = ''.join(random.choices(string.ascii_uppercase, k=3))
+            digits = ''.join(random.choices(string.digits, k=9))
+            new_mrn = f"P-{digits}{initials}"
+
+            # Check if the generated MRN already exists
+            if not Patient.objects.filter(medical_record_number=new_mrn).exists():
+                instance.medical_record_number = new_mrn
+                instance.save()
+                break
