@@ -30,7 +30,3 @@ class PatientRegistrationForm(forms.ModelForm):
     )
 
 
-
-    class Meta:
-        model=Results
-        fields=['results','comment']
