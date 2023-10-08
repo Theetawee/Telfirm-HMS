@@ -2,7 +2,7 @@ from django.utils import timezone
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login,logout
-from .forms import PatientRegistrationForm,ResultForm
+from .forms import PatientRegistrationForm
 from .models import Patient,Test,Results
 
 
@@ -38,8 +38,9 @@ def new_patient(request):
     if request.method == 'POST':
         form = PatientRegistrationForm(request.POST)
         if form.is_valid():
-            # If the form is valid, save the patient data
-            form.save()
+            p=form.save()
+            for test in p.tests.all():
+                Results.objects.create(patient=p,test=test).save()
             # Redirect to a success page or another appropriate URL
             return redirect('home')
         else:
@@ -58,21 +59,20 @@ def results(request, mrn):
     results = Results.objects.filter(patient=patient)
 
     if request.method == 'POST':
-        form = ResultForm(request.POST)
-        test = Test.objects.get(id=request.POST['test'])
-        if form.is_valid():
-            t_results = form.save(commit=False)
-            t_results.done_by = request.user
-            t_results.patient = patient
-            t_results.test = test
-            t_results.save()
-            return redirect('home')
-    else:
-        form = ResultForm()
-
+        test_id=request.POST['test']
+        result=request.POST.get('result')
+        comment=request.POST.get('comment')
+        test=Test.objects.get(id=test_id)
+        test_result=Results.objects.get(patient=patient,test=test,done=False)
+        test_result.results=result
+        test_result.comment=comment
+        test_result.date=timezone.now()
+        test_result.done=True
+        test_result.done_by=request.user
+        test_result.save()
+        return redirect('home')
     context = {
         'patient': patient,
-        'form': form,
         'results': results
     }
 

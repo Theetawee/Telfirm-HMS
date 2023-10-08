@@ -7,8 +7,9 @@ from .utils import (
     GENDER_CHOICES,
     STATUS_CHOICES,
     WARD,
-    RESULTS_FAST,RESULTS_STATUS,
-    TEST_LEVELS
+    RESULTS_FAST,
+    RESULTS_STATUS,
+    TEST_LEVELS,
 )
 import random
 import string
@@ -50,6 +51,16 @@ class Test(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     
+    
+    @property
+    def has_results(self,patient):
+        if Results.objects.filter(test=self,patient=patient).exists():
+            return True
+        else:
+            return False
+    
+    
+
     @property
     def has_results(self,patient):
         if Results.objects.filter(test=self,patient=patient).exists():
@@ -60,6 +71,7 @@ class Test(models.Model):
     
     def __str__(self):
         return self.name
+
 
 class Patient(models.Model):
     first_name = models.CharField(max_length=100)
@@ -84,9 +96,7 @@ class Patient(models.Model):
 
     comments = models.TextField(blank=True, null=True)
 
-    tests = models.ManyToManyField(Test, blank=True)
-
-
+    tests = models.ManyToManyField(Test, blank=True,related_name='tests')
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} (MRN: {self.medical_record_number})"
@@ -103,19 +113,28 @@ class Patient(models.Model):
         return max(age_years, 0)
 
     class Meta:
-        ordering=['-id']
+        ordering = ["-id"]
 
 
-
-    
-    
 class Results(models.Model):
-    patient=models.ForeignKey(Patient,on_delete=models.CASCADE)
-    test=models.ForeignKey(Test,on_delete=models.CASCADE)
-    results=models.CharField(null=True,blank=True,choices=RESULTS_FAST,max_length=100,verbose_name='Test result')
-    comment=models.TextField(null=True,blank=True,verbose_name='Comment')
-    date=models.DateTimeField(auto_now_add=True)
-    done_by=models.ForeignKey(MedicalWorker,on_delete=models.SET_NULL,null=True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    test = models.ForeignKey(Test, on_delete=models.CASCADE)
+    results = models.CharField(
+        null=True,
+        blank=True,
+        choices=RESULTS_FAST,
+        max_length=100,
+        verbose_name="Test result",
+    )
+    comment = models.TextField(null=True, blank=True, verbose_name="Comment")
+    date = models.DateTimeField(blank=True, null=True)
+    done_by = models.ForeignKey(
+        MedicalWorker, on_delete=models.SET_NULL, null=True, blank=True
+    )
+    done = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.patient.name}'s results -{self.test.name}"
 
 
 @receiver(post_save, sender=Patient)
@@ -132,3 +151,7 @@ def assign_mrn(sender, instance, created, **kwargs):
                 instance.medical_record_number = new_mrn
                 instance.save()
                 break
+
+        # Create result entries for each test associated with the patient
+        for test in instance.tests.all():
+            Results.objects.create(patient=instance,tea=test, test=test,done=False).save()

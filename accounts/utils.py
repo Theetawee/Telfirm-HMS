@@ -32,8 +32,8 @@ WARD=(
 )
 
 RESULTS_FAST=(
-    ('POSTIVE','POSTIVE'),
-    ('NEGATIVE','NEGATIVE')
+    ('P','POSTIVE'),
+    ('N','NEGATIVE')
 )
 
 RESULTS_STATUS=(
