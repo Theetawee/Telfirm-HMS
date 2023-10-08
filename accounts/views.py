@@ -1,8 +1,9 @@
+from django.utils import timezone
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login,logout
-from .forms import PatientRegistrationForm
-from .models import Patient
+from .forms import PatientRegistrationForm,ResultForm
+from .models import Patient,Test,Results
 
 
 def login_view(request):
@@ -52,10 +53,27 @@ def new_patient(request):
         return render(request, 'accounts/patient/new.html', context)
 
 
-def results(request,mrn):
-    patient=get_object_or_404(Patient,medical_record_number=mrn)
-    context={
-        'patient':patient,
-        'results':results
+def results(request, mrn):
+    patient = get_object_or_404(Patient, medical_record_number=mrn)
+    results = Results.objects.filter(patient=patient)
+
+    if request.method == 'POST':
+        form = ResultForm(request.POST)
+        test = Test.objects.get(id=request.POST['test'])
+        if form.is_valid():
+            t_results = form.save(commit=False)
+            t_results.done_by = request.user
+            t_results.patient = patient
+            t_results.test = test
+            t_results.save()
+            return redirect('home')
+    else:
+        form = ResultForm()
+
+    context = {
+        'patient': patient,
+        'form': form,
+        'results': results
     }
-    return render(request,'accounts/patient/results.html',context)
+
+    return render(request, 'accounts/patient/results.html', context)

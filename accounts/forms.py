@@ -1,6 +1,5 @@
 from django import forms
-from .models import Patient
-from .models import Test
+from .models import Patient,Results,Test
 
 class PatientRegistrationForm(forms.ModelForm):
     class Meta:
@@ -29,3 +28,9 @@ class PatientRegistrationForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,  # Use CheckboxSelectMultiple for multiple selections
         required=False,  # Set to True if it's required
     )
+
+
+class ResultForm(forms.ModelForm):
+    class Meta:
+        model=Results
+        fields=['results','comment']

@@ -15,93 +15,60 @@
 </section>
 
 
-
 <section class="py-10 max-w-screen-lg mx-auto">
     <div>
-
-
-<div class="relative overflow-x-auto border border-gray-200 rounded-md">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Test Name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Department
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Status
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for test in patient.tests.all %}
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700  dark:hover:bg-gray-600">
-                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                    {{test.name}}  
-                </th>
-                <td class="px-6 py-4">
-                    <p>{{test.department}}</p>
-                </td>
-                {% if test.status == 'Pending' %}
-                <td class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Pending
-                    </div>
-                </td>
-                {% elif test.status == 'Done' %}
-                <td class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-yellow-500 mr-2"></div> Done
-                    </div>
-                </td>
-                
-                {% elif test.status == 'Confirmed' %}
-                <td class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Confirmed
-                    </div>
-                </td>
-                
-                {% endif %}
-
-
-                <!-- actions -->
-                {% if test.status == 'Pending' %}
-                <td class="px-6 py-4">
-                    <button data-modal-target="defaultModal-{{test.pk}}" data-modal-toggle="defaultModal-{{test.pk}}" >Add result</button>
-                </td>
-                {% elif test.status == 'Done' %}
-                <td class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-yellow-500 mr-2"></div> Done
-                    </div>
-                </td>
-                
-                {% elif test.status == 'Confirmed' %}
-                <td class="px-6 py-4">
-                    <div class="flex items-center">
-                        <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Confirmed
-                    </div>
-                </td>
-                
-                {% endif %}
-                
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-
-
-
+        <div class="relative overflow-x-auto border border-gray-200 rounded-md">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Test Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Department
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for test in patient.tests.all %}
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600">
+                        <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ test.name }}
+                        </th>
+                        <td class="px-6 py-4">
+                            <p>{{ test.department }}</p>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                {% for result in results %}
+                                {% if result.test == test %}
+                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Completed
+                                {% endif  %}
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            {% for result in results %}
+                            {% if result.test == test %}
+                            <button data-modal-target="defaultModal-{{ test.pk }}" data-modal-toggle="defaultModal-{{ test.pk }}" >View result</button>
+                            {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </section>
+
+
 
 
 {% for test in patient.tests.all %}
@@ -124,9 +91,26 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6">
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                </p>
+                <form action="{% url 'results' patient.medical_record_number %}" method="post" id="auth_form">
+                    {% csrf_token %}
+                <div>
+ <div class="w-60 mb-6">                   
+<label for="id_results_fast" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Test results</label>
+
+{{form.results|is_input}}
+</div>
+<input type="hidden" name="test" value="{{test.id}}" >
+<div class="mb-6">
+    <label for="id_other_results" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Comment</label>
+{{form.comment|area}}
+</div>
+</div>
+<div class="w-16 ml-auto ">
+    {% include 'accounts/Button.html' with action="save" %}
+</div>
+</form>
+
+                </div>
             </div>
         </div>
     </div>

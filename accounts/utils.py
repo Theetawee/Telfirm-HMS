@@ -37,7 +37,13 @@ RESULTS_FAST=(
 )
 
 RESULTS_STATUS=(
-    ('Pending','Pending'),
-    ('Done','Done'),
-    ('Confirmed','Confirmed')
+    ('p','Pending'),
+    ('d','Done'),
+    ('c','Confirmed')
+)
+
+TEST_LEVELS=(
+    ('one','one'),#postive/negative test
+    ('two','two'),#needs explain
+    
 )

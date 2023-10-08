@@ -7,7 +7,8 @@ from .utils import (
     GENDER_CHOICES,
     STATUS_CHOICES,
     WARD,
-    RESULTS_FAST,RESULTS_STATUS
+    RESULTS_FAST,RESULTS_STATUS,
+    TEST_LEVELS
 )
 import random
 import string
@@ -48,12 +49,13 @@ class Department(models.Model):
 class Test(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    results_fast=models.CharField(choices=RESULTS_FAST,max_length=100,null=True,blank=True)
-    other_results=models.TextField(null=True,blank=True)
-    status=models.CharField(choices=RESULTS_STATUS,default='Pending',max_length=100)
-    done_by=models.ForeignKey(MedicalWorker,on_delete=models.SET_NULL,null=True)
-    date=models.DateTimeField(null=True,blank=True)
-    confirmed=models.BooleanField(default=False)
+    
+    @property
+    def has_results(self,patient):
+        if Results.objects.filter(test=self,patient=patient).exists():
+            return True
+        else:
+            return False
     
     
     def __str__(self):
@@ -107,8 +109,13 @@ class Patient(models.Model):
 
     
     
-
-
+class Results(models.Model):
+    patient=models.ForeignKey(Patient,on_delete=models.CASCADE)
+    test=models.ForeignKey(Test,on_delete=models.CASCADE)
+    results=models.CharField(null=True,blank=True,choices=RESULTS_FAST,max_length=100,verbose_name='Test result')
+    comment=models.TextField(null=True,blank=True,verbose_name='Comment')
+    date=models.DateTimeField(auto_now_add=True)
+    done_by=models.ForeignKey(MedicalWorker,on_delete=models.SET_NULL,null=True)
 
 
 @receiver(post_save, sender=Patient)
