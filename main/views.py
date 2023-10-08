@@ -23,3 +23,7 @@ def search(request):
             'qs':patient_qs
         }
     return render(request, 'main/search.html', context)
+
+
+def docs(request):
+    return render(request,'main/docs.html' )
