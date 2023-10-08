@@ -77,3 +77,13 @@ def results(request, mrn):
     }
 
     return render(request, 'accounts/patient/results.html', context)
+
+
+def view_results(request,test_id,patient_id):
+    test=Test.objects.get(id=test_id)
+    patient=get_object_or_404(Patient,id=patient_id)
+    results=get_object_or_404(Results,test=test,patient=patient)
+    context={
+        'results':results
+    }
+    return render(request,'accounts/patient/view.html',context)

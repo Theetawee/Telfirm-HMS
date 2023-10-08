@@ -1344,12 +1344,20 @@ input:checked + .toggle-bg{
   max-width: 24rem;
 }
 
+.max-w-screen-md{
+  max-width: 768px;
+}
+
 .flex-1{
   flex: 1 1 0%;
 }
 
 .flex-shrink{
   flex-shrink: 1;
+}
+
+.border-collapse{
+  border-collapse: collapse;
 }
 
 .-translate-x-full{
@@ -1810,6 +1818,10 @@ input:checked + .toggle-bg{
 
 .text-right{
   text-align: right;
+}
+
+.font-sans{
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .text-2xl{

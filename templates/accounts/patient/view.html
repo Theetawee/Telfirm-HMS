@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Result Slip</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 10px 30px;
+            border: 1px solid #ddd;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .header p {
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .patient-info {
+            margin-bottom: 20px;
+        }
+
+        .patient-info h2 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .patient-info p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .test-results {
+            margin-bottom: 20px;
+        }
+
+        .test-results h2 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .comments {
+            margin-bottom: 20px;
+            height: 100px;
+        }
+
+        .comments h2 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .comments p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .footer {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer p {
+            font-size: 16px;
+        }
+
+        .topper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .topper button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .topper button:hover {
+            background-color: #0056b3;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #fff;
+            }
+            .topper {
+                display: none;
+            }
+            .container {
+                max-width: 100%;
+                margin: 0;
+                min-height: 100%;
+                padding: 20px;
+                page-break-before: always;
+                border: none;
+            }
+
+            .header {
+                page-break-inside: avoid;
+            }
+
+            .test-results {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topper">
+        <button onclick="window.print()">Print</button>
+        <button onclick="history.back()">Close</button>
+    </div>
+    <div class="container">
+        <!-- Hospital Information -->
+        <div class="header">
+            <h1>Hospital Name</h1>
+            <p>Hospital Address</p>
+        </div>
+
+        <!-- Patient Information -->
+        <div class="patient-info">
+            <h2>Patient Information</h2>
+            <p><strong>Name:</strong> {{ results.patient.name }}</p>
+            <p><strong>Age:</strong> {{ results.patient.age }}</p>
+            <p><strong>Gender:</strong>
+                {% if results.patient.gender == 'M' %}
+                Male
+                {% else %}
+                Female
+                {% endif %}
+            </p>
+            <p><strong>Medical Number:</strong> {{ results.patient.medical_record_number }}</p>
+            <p><strong>Contact Info:</strong> {{ results.patient.contact_number }}</p>
+            <p><strong>Address:</strong> {{ results.patient.address }}</p>
+        </div>
+
+        <!-- Test Results -->
+        <div class="test-results">
+            <h2>Test Results</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Name</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ results.test.name }}</td>
+                        <td>
+                            {% if results.results == 'P' %}
+                            Positive
+                            {% elif results.results == 'N' %}
+                            Negative
+                            {% endif %}
+                            <p>{{ results.comment }}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Comments -->
+        <div class="comments">
+            <h2>Comments</h2>
+        </div>
+
+        <!-- Footer / Signature -->
+        <div class="footer">
+            <p>Doctor's name: --------------------------</p>
+            <p>Doctor's Signature: ____________________</p>
+        </div>
+    </div>
+</body>
+</html>

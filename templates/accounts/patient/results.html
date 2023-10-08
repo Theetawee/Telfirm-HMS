@@ -61,7 +61,7 @@
                             {% for result in results %}
                             {% if result.test == test %}
                             {% if result.done %}
-                            <a href="">View results</a>
+                            <a href="{% url 'view' test.id patient.id %}">View results</a>
                             {% else %}
                             <button data-modal-target="defaultModal-{{ test.pk }}" data-modal-toggle="defaultModal-{{ test.pk }}" >Enter result</button>
                             {% endif %}
