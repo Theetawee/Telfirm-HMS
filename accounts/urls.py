@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import login_view,logout_user,new_patient,results,view_results
+from .views import login_view,logout_user,new_patient,results,view_results,patient_mgt
 from django.contrib.auth import views as auth_views
 
 
@@ -9,6 +9,7 @@ urlpatterns=[
     path('new/patient/',new_patient,name='new_patient'),
     path('results/<str:mrn>/',results,name='results'),
     path('view-results/<int:test_id>/<int:patient_id>/',view_results,name='view'),
+    path('patient_mgt/',patient_mgt,name='patients')
 ]
 
 

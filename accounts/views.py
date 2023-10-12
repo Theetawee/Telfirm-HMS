@@ -87,3 +87,8 @@ def view_results(request,test_id,patient_id):
         'results':results
     }
     return render(request,'accounts/patient/view.html',context)
+
+
+
+def patient_mgt(request):
+    return render(request,'accounts/patient/index.html' )

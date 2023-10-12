@@ -7,7 +7,7 @@
 {% block content %}
 
 
-<section class="max-w-screen-xl mx-auto py-2 px-4">
+<section class="max-w-screen-xl mx-auto py-2 px-6">
     <h1 class="text-3xl mb-6 font-medium">New Patient information</h1>
     <div>
         <form id="auth_form" action="{% url 'new_patient' %}" method="post">
@@ -82,7 +82,7 @@
             </div>
             <div class="mb-12">
             <h2 class="text-xl font-medium mb-4">Tests to be done</h2>
-            <div class="grid grid-cols-4">
+            <div class="grid grid-cols-3 gap-x-6 gap-y-1">
                 {% for test in form.tests %}
                 <div>
                     {{test}}
