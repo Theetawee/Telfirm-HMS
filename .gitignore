@@ -152,3 +152,6 @@ cython_debug/
 #.idea/
 
 migrations/
+static_cdn/
+media/
+media_cdn/
