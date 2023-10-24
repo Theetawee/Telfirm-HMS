@@ -39,7 +39,13 @@ INSTALLED_APPS = [
     "django_htmx",
     "accounts",
     "cloudinary_storage",
-    "cloudinary"
+    "cloudinary",
+    
+    "patients",
+    "laboratory",
+    "billing",
+    "pharmacy",
+    "invetory"
 ]
 
 MIDDLEWARE = [

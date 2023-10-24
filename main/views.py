@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
-from accounts.models import Patient
 from django.db.models import Q
+
+from patients.models import Patient
 
 
 @login_required

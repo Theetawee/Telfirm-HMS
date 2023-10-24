@@ -1,15 +1,11 @@
 from django.urls import path
-from .views import login_view,logout_user,new_patient,results,view_results,patient_mgt
+from .views import login_view,logout_user
 from django.contrib.auth import views as auth_views
 
 
 urlpatterns=[
     path('login/',login_view,name='login'),
-    path('logout',logout_user,name='logout'),
-    path('new/patient/',new_patient,name='new_patient'),
-    path('results/<str:mrn>/',results,name='results'),
-    path('view-results/<int:test_id>/<int:patient_id>/',view_results,name='view'),
-    path('patient_mgt/',patient_mgt,name='patients')
+    path('logout',logout_user,name='logout')
 ]
 
 
