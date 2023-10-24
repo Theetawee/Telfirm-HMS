@@ -1,4 +1,4 @@
-from datetime import timezone
+from django.utils import timezone
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from patients.forms import PatientRegistrationForm
@@ -27,9 +27,10 @@ def new_patient(request):
         return render(request, 'patients/new.html', context)
 
 
-def results(request, mrn):
+def view_patient(request, mrn):
     patient = get_object_or_404(Patient, medical_record_number=mrn)
     results = Result.objects.filter(patient=patient)
+    referring_url = request.META.get('HTTP_REFERER', '/')
 
     if request.method == 'POST':
         test_id=request.POST['test']
@@ -43,7 +44,7 @@ def results(request, mrn):
         test_result.done=True
         test_result.done_by=request.user
         test_result.save()
-        return redirect('home')
+        return redirect(referring_url)
     context = {
         'patient': patient,
         'results': results
