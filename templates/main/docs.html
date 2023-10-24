@@ -1,6 +1,10 @@
 <!DOCTYPE html>{% load static %}
 <html lang="en">
 <head>
+   <link rel="icon" href="{% static 'images/32.png' %}">
+   <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+   <link rel="apple-touch-icon" href="{% static 'images/180.png' %}">
+   
     <meta charset="UTF-8">
     <meta name="robots" content="nofollow, noindex">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +12,16 @@
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
     {% include 'base/fonts.html' %}
     <title>HMS Docs</title>
+    <meta property="og:title" content="HMS Beta testing" />
+    <meta property="og:description" content="Join our beta testing team" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{% static 'images/180.png' %}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HMS Beta testing" />
+    <meta name="twitter:description" content="Join our beta testing team" />
+    <meta name="twitter:image" content="{% static 'images/180.png' %}" />
+    <meta name="rating" content="General">
+    <meta property="og:url" content="{{request.build_absolute_uri}}">
 </head>
 <body>
     
@@ -59,3 +73,5 @@
 
 </body>
 </html>
+
+
