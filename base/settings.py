@@ -143,17 +143,18 @@ if DEBUG == True:
 
 else:
     # ALLOWED_HOSTS = [''] update allowed hosts for production
+    
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "neondb",
-            "USER": "foreverinc",
-            "PASSWORD": os.environ.get("DB_PASSWORD"),
-            "HOST": "ep-blue-violet-792186.us-east-2.aws.neon.tech",
-            "PORT": "5432",
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'neondb',
+            'USER': 'tawee.drake',
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': 'ep-purple-bonus-60535466.eu-central-1.aws.neon.tech',
+            'PORT': '5432',
+            'OPTIONS': {'sslmode': 'require'},
         }
     }
-
     CLOUDINARY_STORAGE = {
         "CLOUD_NAME": "dnb8rethz",
         "API_KEY": "123456789",
