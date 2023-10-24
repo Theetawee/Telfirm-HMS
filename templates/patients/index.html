@@ -79,27 +79,28 @@
                                         MRN
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Tests
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
                                         Ward
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Action
+                                    </th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for patient in patients %}
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        <a href="" title="View {{patient.name}}" class="text-primary-500 text-base">{{patient.name}}</a>
+                                        {{patient.name}}
                                     </th>
                                     <td class="px-6 py-4">
                                         {{patient.medical_record_number}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        Laptop
+                                        {{patient.ward}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{patient.ward}}
+                                        <a href="{% url 'view' patient.medical_record_number %}" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Details</a>
                                     </td>
                                 </tr>
                                 {% endfor %}

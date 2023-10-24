@@ -99,7 +99,7 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6">
-                <form action="{% url 'results' patient.medical_record_number %}" method="post" id="auth_form">
+                <form action="{% url 'view' patient.medical_record_number %}" method="post" id="auth_form">
                     {% csrf_token %}
                 <div>
  <div class="w-60 mb-6">                   

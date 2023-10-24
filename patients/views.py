@@ -49,7 +49,7 @@ def results(request, mrn):
         'results': results
     }
 
-    return render(request, 'accounts/patient/results.html', context)
+    return render(request, 'patients/results.html', context)
 
 
 def view_results(request,test_id,patient_id):
@@ -59,13 +59,15 @@ def view_results(request,test_id,patient_id):
     context={
         'results':results
     }
-    return render(request,'accounts/patient/view.html',context)
+    return render(request,'patients/view.html',context)
 
 
 
 def patient_mgt(request):
     patients=Patient.objects.all()
+    results=Result.objects.all()
     context={
-        'patients':patients
+        'patients':patients,
+        'results':results
     }
     return render(request,'patients/index.html',context )
