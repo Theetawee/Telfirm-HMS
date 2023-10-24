@@ -163,7 +163,7 @@ else:
 
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
-    STATIC_URL = ""
+    STATIC_URL = "/"
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
