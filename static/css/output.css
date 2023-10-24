@@ -1562,6 +1562,12 @@ input:checked + .toggle-bg{
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 
+.space-y-3 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+
 .divide-y > :not([hidden]) ~ :not([hidden]){
   --tw-divide-y-reverse: 0;
   border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
@@ -1910,6 +1916,10 @@ input:checked + .toggle-bg{
   line-height: 2.25rem;
 }
 
+.text-\[\.6rem\]{
+  font-size: .6rem;
+}
+
 .text-lg{
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1928,14 +1938,6 @@ input:checked + .toggle-bg{
 .text-xs{
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-\[\.5rem\]{
-  font-size: .5rem;
-}
-
-.text-\[\.6rem\]{
-  font-size: .6rem;
 }
 
 .font-bold{
@@ -2029,10 +2031,6 @@ input:checked + .toggle-bg{
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.text-\[\]{
-  color: ;
-}
-
 .opacity-0{
   opacity: 0;
 }
@@ -2122,6 +2120,13 @@ input:checked + .toggle-bg{
 
 .htmx-request.loader{
   display:inline;
+}
+
+.active{
+  border-radius: 0px;
+  border-left-width: 4px;
+  --tw-border-opacity: 1;
+  border-color: rgb(16 185 129 / var(--tw-border-opacity));
 }
 
 .hover\:border-gray-300:hover{
