@@ -7,15 +7,46 @@
 
 {% block content %}
 
-<section class="px-6">
-    <div>
+<section class="px-6 py-10">
+    <div class="grid grid-cols-2 mb-8 gap-x-10 gap-y-2">
         <h1>Patient name: {{patient.name}}</h1>
+        <p>Gender: {{patient.gender}}</p>
         <h2>MRN: {{patient.medical_record_number}}</h2>
+        <p>Date of Birth: {{patient.date_of_birth}} ({{patient.age}})</p>
+        <p>Ward: {{patient.ward}}</p>
+        <p>Registered on: {{patient.admission_date}}</p>
     </div>
+    <div class="grid grid-cols-2 mb-6 gap-4">
+    <div>
+        <h2 class="text-xl">Allergies</h2>
+        {% if patient.allergies %}
+        <p>{{patient.allergies}}</p>
+        {% else %}
+        <p class="text-red-500">No allergies</p>
+        {% endif %}
+    </div>
+    <div>
+        <h2 class="text-xl">Medical conditions</h2>
+        {% if patient.medical_conditions %}
+        <p>{{patient.medical_conditions|linebreaks}}</p>
+        {% else %}
+        <p class="text-red-500">No Medical conditions</p>
+        {% endif %}
+    </div>
+    </div>
+    <div>
+        <h2 class="text-xl">Current medications</h2>
+        {% if patient.current_medications %}
+        <p>{{patient.current_medications|linebreaks}}</p>
+        {% else %}
+        <p class="text-red-500">No Medications</p>
+        {% endif %}
+    </div>
+    
 </section>
 
 
-<section class="py-10 max-w-screen-lg mx-auto">
+<section class="py-10 px-8 max-w-screen-lg mx-auto">
     <div>
         <div class="relative overflow-x-auto border border-gray-200 rounded-md">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
