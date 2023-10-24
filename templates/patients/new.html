@@ -7,12 +7,12 @@
 {% block content %}
 
 
-<section class="max-w-screen-xl mx-auto py-2 px-6">
-    <h1 class="text-3xl mb-6 font-medium">New Patient information</h1>
+<section class="max-w-screen-xl mx-auto py-2 px-8">
+    <h1 class="text-3xl mb-6 font-medium">New Patient form</h1>
     <div>
         <form id="auth_form" action="{% url 'new_patient' %}" method="post">
             {% csrf_token %}
-            <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div class="grid gap-10 mb-8 md:grid-cols-2">
                 <div>
                     <label for="id_first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
                     {{form.first_name|is_input}}
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-3 gap-6 mb-6">
+            <div class="grid grid-cols-3 gap-10 mb-6">
                     <div>
                         <label for="id_address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
                         {{form.address|is_input}}
@@ -61,7 +61,7 @@
                     </div>  
                     
             </div>
-            <div class="grid grid-cols-4 gap-6 mb-6">
+            <div class="grid grid-cols-2 gap-6 mb-6">
                     <div>
                         <label for="id_allergies" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Allergies</label>
                         {{form.allergies|area}}
@@ -81,10 +81,10 @@
                     
             </div>
             <div class="mb-12">
-            <h2 class="text-xl font-medium mb-4">Tests to be done</h2>
+            <h2 class="text-2xl font-medium mb-6 mt-4">Tests to be done</h2>
             <div class="grid grid-cols-3 gap-x-6 gap-y-1">
                 {% for test in form.tests %}
-                <div>
+                <div class="tests">
                     {{test}}
                 </div>
                 {% endfor %}

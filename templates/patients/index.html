@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div>
-                <a href="">
+                <a href="{% url 'new_patient' %}" hx-get="{% url 'new_patient' %}" hx-target="#body" hx-push-url="true" hx-indicator="#loader">
                 <div class="flex p-6 rounded-lg bg-primary-700 text-white shadow-sm items-center justify-between">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
@@ -90,16 +90,16 @@
                                 {% for patient in patients %}
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
+                                        <a href="" title="View {{patient.name}}" class="text-primary-500 text-base">{{patient.name}}</a>
                                     </th>
                                     <td class="px-6 py-4">
-                                        Silver
+                                        {{patient.medical_record_number}}
                                     </td>
                                     <td class="px-6 py-4">
                                         Laptop
                                     </td>
                                     <td class="px-6 py-4">
-                                        $2999
+                                        {{patient.ward}}
                                     </td>
                                 </tr>
                                 {% endfor %}

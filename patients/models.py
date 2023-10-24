@@ -17,11 +17,13 @@ class Test(models.Model):
     
     @property
     def has_results(self,patient):
-        if Results.objects.filter(test=self,patient=patient).exists():
+        if Result.objects.filter(test=self,patient=patient).exists():
             return True
         else:
             return False
     
+    def __str__(self):
+        return self.name
 
 
 class Patient(models.Model):
@@ -66,12 +68,12 @@ class Patient(models.Model):
     class Meta:
         ordering = ["-id"]
 
-
+    
     
 
     @property
     def has_results(self,patient):
-        if Results.objects.filter(test=self,patient=patient).exists():
+        if Result.objects.filter(test=self,patient=patient).exists():
             return True
         else:
             return False
@@ -83,7 +85,7 @@ class Patient(models.Model):
 
 
 
-class Results(models.Model):
+class Result(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
     results = models.CharField(
@@ -121,10 +123,6 @@ def assign_mrn(sender, instance, created, **kwargs):
                 instance.save()
                 break
 
-        # Create result entries for each test associated with the patient
-        for test in instance.tests.all():
-            Results.objects.create(patient=instance,tea=test, test=test,done=False).save()
-
-
+        
 
 

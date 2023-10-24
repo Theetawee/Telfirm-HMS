@@ -1,4 +1,5 @@
-from accounts.models import Test, Department
+from accounts.models import Department
+from patients.models import Test
 
 test_department_mapping = {
     'Hiv Test (HCT, RCT, VCT, PICT)': 'Microbiology',
