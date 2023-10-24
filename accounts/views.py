@@ -7,15 +7,12 @@ def login_view(request):
     referring_url = request.META.get('HTTP_REFERER', '/')
 
     if request.user.is_authenticated:
-        # Redirect authenticated users to the referring URL
         return redirect(referring_url)
     
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
-            # Log the user in
             auth_login(request, form.get_user())
-            # Redirect to the referring URL (or a default URL)
             return redirect('home')
     else:
         form = AuthenticationForm()

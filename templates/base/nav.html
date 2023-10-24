@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
             <div>
-                <a href="{% url 'home' %}" class="flex items-center gap-2">
+                <a href="{% url 'home' %}" hx-get="{% url 'home' %}" hx-indicator="#loader" hx-push-url="true" hx-target="#body" class="flex items-center gap-2">
                     <img src="{% static 'images/logo.svg'%}" class="w-10 h-10" alt="MedSync Logo">
                     <span class="text-xl font-semibold text-gray-600">MedSync</span>
                 </a>
@@ -15,7 +15,7 @@
             <div class="grid grid-cols-3 gap-x-10">
                 <!-- Module 1: New Patient -->
                 <div class="flex-col flex items-center">
-                    <a href="{% url 'new_patient' %}" class="text-center flex flex-col items-center">
+                    <a href="#" class="text-center flex flex-col items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-600" fill="currentColor" viewBox="0 0 640 512">
                             <path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
                         </svg>
@@ -53,7 +53,10 @@
         </div>
 
         <div>
-            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex items-center font-medium justify-center" type="button">{{ request.user.get_full_name }} <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex items-center font-medium justify-center" type="button"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+              </svg>
+              </span> {{ user.name }} <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                 </svg>
             </button>
@@ -72,3 +75,11 @@
 
 
 <div style="height: 100px;"></div>
+<div id="loader" class="loader fixed left-0 w-full z-50" style="top: 70px;">
+    <div class="relative h-3">
+        <div class="h-full animate-pulse bg-primary-500" style="width: 100%">
+          <span class="absolute inset-0 py-0.5 flex items-center justify-center text-[.6rem] font-light text-white">loading...</span>
+        </div>
+      </div>
+      
+</div>
