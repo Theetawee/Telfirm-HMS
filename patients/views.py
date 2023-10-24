@@ -1,9 +1,8 @@
 from datetime import timezone
 from django.shortcuts import get_object_or_404, redirect, render
-from laboratory.models import Test
 
 from patients.forms import PatientRegistrationForm
-from patients.models import Patient, Results
+from patients.models import Patient, Results, Test
 
 # Create your views here.
 
@@ -64,4 +63,4 @@ def view_results(request,test_id,patient_id):
 
 
 def patient_mgt(request):
-    return render(request,'accounts/patient/index.html' )
+    return render(request,'patients/index.html' )
