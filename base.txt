@@ -11,7 +11,6 @@ django-phonenumber-field
 idna
 phonenumberslite
 Pillow
-psycopg2
 requests
 six
 sqlparse

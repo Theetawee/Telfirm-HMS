@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="robots" content="nofollow, noindex">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
     {% include 'base/fonts.html' %}
-    <title>Document</title>
+    <title>HMS Docs</title>
 </head>
 <body>
     
@@ -35,11 +36,24 @@
    </div>
 </aside>
 
-<div class="p-4 sm:ml-64">
-<div class="flex items-center justify-center">
-<h1>coming soon</h1>
+<div class="p-4 sm:ml-64 py-10">
+   <div class="flex items-center justify-center">
+      <h1 class="text-3xl font-semibold text-center">Coming Soon!</h1>
+  </div>
+  
+  <div class="px-4 mt-6">
+      <h1 class="text-2xl font-semibold mb-4">Testing Guide</h1>
+      <div class="bg-gray-100 p-4 rounded-lg">
+          <p class="mb-2"><strong>Email:</strong> tester@hms.com</p>
+          <p class="mb-2"><strong>Password:</strong> Kanghan123</p>
+          <div class="mt-4">
+              <a href="{% url 'login' %}" class="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</a>
+          </div>
+      </div>
+  </div>
+  
 </div>
-</div>
+
 
 <script src="{% static 'js/main.js' %}"></script>
 
