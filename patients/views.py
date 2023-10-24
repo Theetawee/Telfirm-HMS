@@ -63,4 +63,8 @@ def view_results(request,test_id,patient_id):
 
 
 def patient_mgt(request):
-    return render(request,'patients/index.html' )
+    patients=Patient.objects.all()
+    context={
+        'patients':patients
+    }
+    return render(request,'patients/index.html',context )
