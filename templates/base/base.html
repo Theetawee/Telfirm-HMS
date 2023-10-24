@@ -1,4 +1,12 @@
-{% load static %}{% load redotags %}<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0">{% block head %}{% endblock %}{% include 'base/seo.html' %}{% include 'base/pwa.html' %} {% include 'base/fonts.html' %}<link rel="stylesheet" href="{% static 'css/output.css' %}"></head><body id="body" class="bg-white dark:bg-black">{% include 'base/nav.html' %} {% include 'base/messages.html' %}
+{% load static %}{% load redotags %}<!DOCTYPE html><html lang="en"><head>
+   <script type="text/javascript">
+      if (screen.width <= 1111) {
+        document.location = "{% url 'docs' %}";
+      }
+    </script>
+    
+   
+   <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0">{% block head %}{% endblock %}{% include 'base/seo.html' %}{% include 'base/pwa.html' %} {% include 'base/fonts.html' %}<link rel="stylesheet" href="{% static 'css/output.css' %}"></head><body id="body" class="bg-white dark:bg-black">{% include 'base/nav.html' %} {% include 'base/messages.html' %}
     
     
 

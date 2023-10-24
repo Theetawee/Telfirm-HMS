@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script type="text/javascript">
+        if (screen.width <= 1111) {
+          document.location = "{% url 'docs' %}";
+        }
+      </script>
+     
 <head>{% load static %}
     <meta name="robots" content="nofollow, noindex">
     <meta charset="UTF-8">
