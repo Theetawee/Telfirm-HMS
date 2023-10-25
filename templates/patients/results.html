@@ -107,6 +107,119 @@
                             {% endif %}
                             {% endfor %}
                         </td>
+
+
+
+                        {% for result in results %}
+
+                        {% if result.test == test and result.done == False %}
+                        <!-- Main modal -->
+                        <div id="defaultModal-{{test.pk}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative w-full max-w-2xl max-h-full">
+                                <!-- Modal content -->
+                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                    <!-- Modal header -->
+                                    <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                            {{test.name}} Results
+                                        </h3>
+                                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal-{{test.pk}}">
+                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                            </svg>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="p-6 space-y-6">
+                                        <form action="{% url 'view' patient.medical_record_number %}" method="post" id="auth_form">
+                                            {% csrf_token %}
+                                        <div>
+                         <div class="w-60 mb-6">                   
+                        <label for="result" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Test results</label>
+                        <select id="result" name="result" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                          <option selected disabled>----</option>
+                          <option value="P">Positive</option>
+                          <option value="N">Negative</option>
+                        </select>
+                        </div>
+                        <input type="hidden" name="test" value="{{test.id}}" >
+                        <div class="mb-6">
+                            <label for="comment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Comment</label>
+                        
+                        <textarea id="comment" name="comment" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                        
+                        
+                        
+                        </div>
+                        </div>
+                        <div class="w-16 ml-auto ">
+                            {% include 'accounts/Button.html' with action="save" %}
+                        </div>
+                        </form>
+                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        
+                            {% elif result.test == test and result.done == True %}
+                        
+                        <!-- Main modal -->
+                        <div id="defaultModal-{{test.pk}}done" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative w-full max-w-2xl max-h-full">
+                                <!-- Modal content -->
+                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                    <!-- Modal header -->
+                                    <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                            {{test.name}} Results
+                                        </h3>
+                                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal-{{test.pk}}done">
+                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                            </svg>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="p-6 space-y-6">
+                                        <h2>Results</h2>
+                                        {% for result in results %}
+                                        {% if result.test == test %}
+                                        {% if result.results == 'N' %}
+                                        <p>Negative</p>
+                                        {% elif result.results == 'P' %}
+                                        <p>Positive</p>
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
+                                        <h2>Comments</h2>
+                                        {% if result.comment %}
+                                        {{result.comment}}
+                                        {% else %}
+                                        <p class="text-red-500">No comment </p>
+                                        {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        {% endif %}
+                        </div>
+                        
+                        
+                        {% endfor %}
+
+
+
+
+
+
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -117,121 +230,6 @@
 
 
 
-
-{% for test in patient.tests.all %}
-
-{% for result in results %}
-
-{% if result.test == test and result.done == False %}
-<!-- Main modal -->
-<div id="defaultModal-{{test.pk}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative w-full max-w-2xl max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Modal header -->
-            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    {{test.name}} Results
-                </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal-{{test.pk}}">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <div class="p-6 space-y-6">
-                <form action="{% url 'view' patient.medical_record_number %}" method="post" id="auth_form">
-                    {% csrf_token %}
-                <div>
- <div class="w-60 mb-6">                   
-<label for="result" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Test results</label>
-<select id="result" name="result" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-  <option selected disabled>----</option>
-  <option value="P">Positive</option>
-  <option value="N">Negative</option>
-</select>
-</div>
-<input type="hidden" name="test" value="{{test.id}}" >
-<div class="mb-6">
-    <label for="comment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Comment</label>
-
-<textarea id="comment" name="comment" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
-
-
-
-</div>
-</div>
-<div class="w-16 ml-auto ">
-    {% include 'accounts/Button.html' with action="save" %}
-</div>
-</form>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% endif %}
-
-{% endfor %}
-{% endfor %}
-
-{% for test in patient.tests.all %}
-
-{% for result in results %}
-
-{% if result.test == test and result.done == True %}
-
-
-<!-- Main modal -->
-<div id="defaultModal-{{test.pk}}done" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative w-full max-w-2xl max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Modal header -->
-            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    {{test.name}} Results
-                </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal-{{test.pk}}done">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <div class="p-6 space-y-6">
-                <h2>Results</h2>
-                {% for result in results %}
-                {% if result.test == test %}
-                {% if result.results == 'N' %}
-                <p>Negative</p>
-                {% elif result.results == 'P' %}
-                <p>Positive</p>
-                {% endif %}
-                {% endif %}
-                {% endfor %}
-                <h2>Comments</h2>
-                {% if result.comment %}
-                {{result.comment}}
-                {% else %}
-                <p class="text-red-500">No comment </p>
-                {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% endif %}
-
-{% endfor %}
-
-{% endfor %}
 
 
 
