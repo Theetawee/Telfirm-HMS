@@ -1,3 +1,4 @@
+from django.http import HttpResponseBadRequest
 from django.utils import timezone
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
@@ -28,29 +29,38 @@ def new_patient(request):
 
 
 def view_patient(request, mrn):
-    patient = get_object_or_404(Patient, medical_record_number=mrn)
-    results = Result.objects.filter(patient=patient)
+    patient = get_object_or_404(Patient,medical_record_number=mrn)
+    
+    results = Result.objects.select_related('patient','test').filter(patient=patient)
     referring_url = request.META.get('HTTP_REFERER', '/')
 
     if request.method == 'POST':
-        test_id=request.POST['test']
-        result=request.POST.get('result')
-        comment=request.POST.get('comment')
-        test=Test.objects.get(id=test_id)
-        test_result=Result.objects.get(patient=patient,test=test,done=False)
-        test_result.results=result
-        test_result.comment=comment
-        test_result.date=timezone.now()
-        test_result.done=True
-        test_result.done_by=request.user
+        test_id = request.POST.get('test')
+        result = request.POST.get('result')
+        comment = request.POST.get('comment')
+
+        try:
+            test = Test.objects.get(id=test_id)
+        except Test.DoesNotExist:
+            return HttpResponseBadRequest("Invalid test ID")
+
+        test_result, created = Result.objects.get_or_create(patient=patient, test=test, done=False)
+        test_result.results = result
+        test_result.comment = comment
+        test_result.date = timezone.now()
+        test_result.done = True
+        test_result.done_by = request.user
         test_result.save()
         return redirect(referring_url)
+
     context = {
         'patient': patient,
-        'results': results
+        'results': results,
     }
 
     return render(request, 'patients/results.html', context)
+
+
 
 
 def view_results(request,test_id,patient_id):
