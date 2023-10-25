@@ -1,7 +1,7 @@
 {
 	"{% load static %}": "",
-	"name": "MedSync Hospital Management System",
-	"short_name": "MedSync",
+	"name": "Telfirm Hospital Management System",
+	"short_name": "Telfirm",
 	"start_url": "/",
 	"theme_color": "#059669",
 	"scope": "/",
@@ -16,7 +16,7 @@
 	"categories": [
 		"Healthcare"
 	],
-	"description": "MedSync Hospital Management System is an advanced and intuitive healthcare solution designed to streamline and optimize hospital operations.",
+	"description": "Telfirm Hospital Management System is an advanced and intuitive healthcare solution designed to streamline and optimize hospital operations.",
 	"display": "standalone",
 	"id": "/",
 	"icons": [
@@ -76,6 +76,12 @@
 		}
 	],
 	"screenshots": [
+		{
+			"src": "{% static 'images/512.png' %}",
+			"sizes": "512x512",
+			"type": "image/png",
+			"form_factor":"wide"
+		},
 		{
 			"src": "{% static 'images/512.png' %}",
 			"sizes": "512x512",
