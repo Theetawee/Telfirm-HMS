@@ -65,6 +65,8 @@ class Patient(models.Model):
         age_years = delta.days // 365
         return max(age_years, 0)
 
+    
+    
     class Meta:
         ordering = ["-id"]
 
