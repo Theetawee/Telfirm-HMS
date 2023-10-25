@@ -1,4 +1,4 @@
-# Hospital Management System
+# Telfirm Hospital Management System
 
 Welcome to the Hospital Management System, a comprehensive solution designed to streamline healthcare services efficiently and affordably. This system is built on a stack of powerful technologies and is aimed at enhancing patient care, improving hospital management, and facilitating collaboration among healthcare providers.
 
