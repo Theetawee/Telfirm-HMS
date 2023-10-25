@@ -5,8 +5,9 @@ from django.db.models import Q
 from patients.models import Patient
 
 
-@login_required
 def index(request):
+    if not request.user.is_authenticated:
+        return render(request,'main/docs.html' )
     return render(request, "main/index.html")
 
 
