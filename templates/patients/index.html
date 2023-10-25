@@ -13,7 +13,7 @@
             <div>
                 <div class="p-6 rounded-lg shadow flex items-center justify-between bg-gray-50">
                     <h1 class="text-3xl">Total Patients</h1>
-                    <p class="text-2xl font-bold">{{patients|length}}</p>
+                    <p class="text-2xl font-bold">{{patients_num}}</p>
                 </div>
             </div>
             <div>
@@ -37,9 +37,6 @@
     <div class="max-w-screen-lg mx-auto">
         <h1 class="text-2xl">Recent Patients</h1>
         <div>
-
-
-
 
 
             <section class="flex items-center pt-10">
@@ -66,8 +63,6 @@
                       </div>
                     </div>
                     
-
-
                     <div class="relative overflow-x-auto">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -84,37 +79,21 @@
                                     <th scope="col" class="px-6 py-3">
                                         Action
                                     </th>
-                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for patient in patients %}
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{patient.name}}
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        {{patient.medical_record_number}}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{patient.ward}}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="{% url 'view' patient.medical_record_number %}" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-1 focus:ring-primary-300 font-medium rounded-sm text-sm px-5 py-2 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Details</a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
+                                {% include 'patients/patient-list.html' %}
                             </tbody>
                         </table>
                     </div>
                     
-
-
-
-
+            
+            
                   </div>
                 </div>
               </section>
+            
+            
 
 
 

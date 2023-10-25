@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from patients.forms import PatientRegistrationForm
 from patients.models import Patient, Result, Test
-
+from django.views.generic.list import ListView
 # Create your views here.
 
 def new_patient(request):
@@ -64,11 +64,20 @@ def view_results(request,test_id,patient_id):
 
 
 
-def patient_mgt(request):
-    patients=Patient.objects.all()
-    results=Result.objects.all()
-    context={
-        'patients':patients,
-        'results':results
-    }
-    return render(request,'patients/index.html',context )
+class PatientListView(ListView):
+    model = Patient
+    template_name = 'patients/index.html'
+    context_object_name = 'patients'
+    paginate_by = 4 
+
+    def get_template_names(self):
+        if self.request.htmx:
+            return 'patients/patient-list.html'
+        return 'patients/index.html'
+        
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['results'] = Result.objects.all()
+        context['patients_num']=Patient.objects.all().count()
+        return context
