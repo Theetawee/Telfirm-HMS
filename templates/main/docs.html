@@ -58,36 +58,52 @@
    </div>
 </aside>
 
-<div class="p-4 sm:ml-64 py-10">
-   <div class="flex items-center justify-center">
-      <h1 class="text-3xl font-semibold text-center">Documentation Coming Soon!</h1>
-  </div>
-  
-  <div class="md:px-4 mt-6">
-   <h1 class="text-2xl font-semibold mb-4">Beta Testing Guide</h1>
-   <div class="bg-gray-100 p-6 rounded-lg">
-       <p class="mb-2"><strong>Email:</strong> tester@hms.com</p>
-       <p class="mb-4"><strong>Password:</strong> Kanghan123</p>
-       <p class="mb-4 ">Please note that the application is accessible on devices with a minimum width of 1111px, such as PCs and desktops.</p>
-       <p class="mb-4 ">If you are unable to access the application on such devices, you can still contribute by helping us with documentation and providing ideas.</p>
-       <p class="mb-4 ">Our project is open source, and we welcome contributions from anyone interested in improving the system. Feel free to inquire and collaborate with us:</p>
-       <div class="mt-4">
-           <a href="{% url 'login' %}" class="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</a>
-       </div>
+<main class="p-4 sm:ml-64 py-10">
+
+   <div class="flex items-center p-4 mb-4 text-sm text-primary-800 rounded-lg bg-primary-50 dark:bg-gray-800 dark:text-primary-400" role="alert">
+      <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+      </svg>
+      <span class="sr-only">Info</span>
+      <div>
+        <span class="font-medium">Documentation Coming Soon!</span>
+      </div>
+    </div>
+    
+
+
+    <div class="md:px-4 mt-6">
+      <h1 class="text-2xl font-semibold mb-4 text-center">Welcome to the Beta Testing Team!</h1>
+      <div class="bg-gray-100 p-6 rounded-lg">
+          <p class="mb-4">
+              Thank you for deciding to join our beta testing team and for your interest in contributing to our Hospital Management System. Your involvement is invaluable to us.
+          </p>
+          <p class="mb-4">
+              Our Hospital Management System is a critical tool in streamlining health services while providing an affordable solution for healthcare workers. It plays a vital role in improving patient care and overall hospital management.
+          </p>
+          <h2 class="text-lg font-semibold mb-2">Test Credentials</h2>
+          <p class="mb-2"><strong>Email:</strong> tester@hms.com</p>
+          <p class="mb-4"><strong>Password:</strong> Kanghan123</p>
+          <p class="mb-4">
+              Please note that the application is accessible on devices with a minimum width of 1111px, such as PCs and desktops. If you are unable to access the application on such devices, you can still contribute by helping us with documentation and providing ideas.
+          </p>
+          <p class="mb-4">
+              Our project is open source, and we welcome contributions from anyone interested in improving the system. You can contribute through code by accessing our GitHub repository:
+          </p>
+          <div class="flex items-center gap-6">
+            <a href="{% url 'login' %}" hx-get="{% url 'login' %}" hx-target="#body" hx-push-url="true" hx-indicator="#loader" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login</a>
+            <a href="" class="text-white bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2">
+               <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                 <path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd"/>
+               </svg>
+                Github Repository
+             </a>
+          </div>
+      </div>
    </div>
-</div>
+   
 
-<div class="px-6 mt-6">
-   <h2 class="text-lg font-semibold mb-2">Join Us and Contribute!</h2>
-   <p class="mb-4 ">Our Hospital Management System project is open source, and we invite anyone interested to contribute and collaborate with us. You can help by writing documentation, providing feedback and ideas, and improving the system.</p>
-   <p class="mb-4 ">For further assistance and inquiries, feel free to reach out to us:</p>
-   <p class="">
-       <strong>WhatsApp:</strong> +256765846845<br>
-       <strong>Email:</strong> support@redodevelopers.site
-   </p>
-</div>
-
-</div>
+</main>
 
 
 {% include 'base/js.html' %}
