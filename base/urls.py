@@ -7,7 +7,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),     
     path('',include('main.urls')),
     path('accounts/',include('accounts.urls')),
-    path('patients/',include('patients.urls'))
+    path('patients/',include('patients.urls')),
+    path('pharmacy/',include('pharmacy.urls'))
 ]
 
 if settings.DEBUG:
