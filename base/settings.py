@@ -180,6 +180,8 @@ MESSAGE_TAGS = {
 
 LOGIN_URL= 'login'
 
+SESSION_COOKIE_AGE = 12 * 60 * 60  # 12 hours in seconds
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 # LOGGING = {
