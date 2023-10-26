@@ -1,21 +1,53 @@
 {% extends 'base/base.html' %}
-
+{% load redotags %}
 {% block head %}
-
 {% endblock %}
 
 {% block content %}
-
-
-<section class="py-16 px-4">
+<section class="py-8 px-4">
     <div class="max-w-screen-md mx-auto">
-        <div class="grid grid-cols-2 gap-10">
-            <div>
-                <a href="{% url 'drugs' %}">Drug stock</a>
-            </div>
+        <h1 class="text-3xl font-semibold">Prescription for {{ result.patient.name }}</h1>
+        <p class="mt-2 text-gray-600">MRN: {{ result.patient.medical_record_number }}</p>
+        <p class="mt-2 text-gray-600">Test: {{result.test.name}}</p>
+    </div>
+    <div class="p-4">
+        <p class="text-2xl mb-4">Current Prescriptions</p>
+        {% if pres %}
+        <ul>
+            {% for p in pres %}
+            <li>{{p.drug.name}}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="text-red-500">No drug has been prscribed</p>
+        {% endif %}
+    </div>
+    <div class="mt-8 max-w-screen-md mx-auto">
+        <div class="mb-6">
+            <h3 class="text-2xl mb-4 font-semibold">Medication</h3>
+            <h4 class="text-xl mb-4">Drugs</h4>
+            <form action="{% url 'pharm' result.id %}" method="post">
+                {% csrf_token %}
+                <div class="mt-2 grid grid-cols-4 gap-2">
+                    {% for drug in form.drug %}
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" id="{{ drug.id_for_label }}" name="{{ drug.name }}" value="{{ drug.value }}"
+                               class="text-primary-500 focus:ring-primary-400 h-4 w-4">
+                        <label for="{{ drug.id_for_label }}" class="text-gray-700 dark:text-gray-400">{{ drug.choice_label }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <input type="hidden" name="patient" value="{{ result.patient.pk }}">
+                <div class="mt-8">
+                    <label for="detail" class="block text-gray-600 font-medium">Prescription and Comments</label>
+                    {{form.detail|area}}
+                    </div>
+                <button class="mt-4 px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded focus:outline-none focus:shadow-outline"
+                        type="submit">Save
+                </button>
+            </form>
+            
         </div>
     </div>
 </section>
-
-
 {% endblock %}

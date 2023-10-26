@@ -103,7 +103,7 @@ class Result(models.Model):
         MedicalWorker, on_delete=models.SET_NULL, null=True, blank=True
     )
     done = models.BooleanField(default=False)
-
+    
     def __str__(self):
         return f"{self.patient.name}'s results -{self.test.name}"
 

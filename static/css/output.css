@@ -1192,6 +1192,10 @@ input:checked + .toggle-bg{
   margin-top: 1.5rem;
 }
 
+.mt-8{
+  margin-top: 2rem;
+}
+
 .block{
   display: block;
 }
@@ -2236,6 +2240,11 @@ input:checked + .toggle-bg{
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-primary-600:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 150 105 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-gradient-to-br:hover{
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -2297,6 +2306,12 @@ input:checked + .toggle-bg{
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
+.focus\:ring:focus{
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
 .focus\:ring-\[\#24292F\]\/50:focus{
   --tw-ring-color: rgb(36 41 47 / 0.5);
 }
@@ -2334,6 +2349,11 @@ input:checked + .toggle-bg{
 .focus\:ring-primary-600:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
+}
+
+.focus\:ring-primary-400:focus{
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(52 211 153 / var(--tw-ring-opacity));
 }
 
 .group:hover .group-hover\:text-gray-900{
@@ -2519,6 +2539,11 @@ input:checked + .toggle-bg{
 :is(.dark .dark\:focus\:ring-primary-800:focus){
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(6 95 70 / var(--tw-ring-opacity));
+}
+
+:is(.dark .dark\:focus\:ring-blue-800:focus){
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(30 66 159 / var(--tw-ring-opacity));
 }
 
 :is(.dark .group:hover .dark\:group-hover\:text-white){
