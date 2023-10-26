@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
 # Create your views here.
+
+
+def index(request):
+    return render(request,'pharmacy/index.html' )
+
+
+def drug_stock(request):
+    return render(request,'pharmacy/stock.html' )
