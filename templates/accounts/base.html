@@ -1,13 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-    <script type="text/javascript">
-        if (screen.width <= 1111) {
-            alert('Device not supported')
-          document.location = "{% url 'docs' %}";
-        }
-      </script>
-     
-<head>{% load static %}
+<html lang="en">{% load static %}
+    <script src="{% static 'js/control.js' %}" async></script> 
+<head>
     {% include 'base/pwa.html' %}
     <meta name="robots" content="nofollow, noindex">
     <meta charset="UTF-8">
