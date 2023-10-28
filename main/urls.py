@@ -6,10 +6,9 @@ from .utils import service_worker,manifest,offline,RobotsTxtView
 
 
 urlpatterns=[
-    path('home',index,name='home'),
+    path('',index,name='home'),
     path('search/',search,name='search'),
     path('docs/',docs,name='docs'),
-    path('',intro,name='intro')
 
 ]
 
