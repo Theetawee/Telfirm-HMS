@@ -5,7 +5,7 @@ from .models import Drug  # Import the Drug model
 class DrugForm(forms.ModelForm):
     class Meta:
         model = Prescription
-        fields = ['drugs', 'detail']
+        fields = ['drugs']
         widgets = {
             'drugs': forms.CheckboxSelectMultiple(attrs={'class': 'drug-checkbox'}),
         }

@@ -18,6 +18,5 @@ class Drug(models.Model):
 class Prescription(models.Model):
     drugs=models.ManyToManyField(Drug,blank=True)
     patient=models.ForeignKey(Patient,on_delete=models.CASCADE)
-    detail=models.TextField(null=True,blank=True)
     def __str__(self):
         return f'Prescription for {self.patient.name}'

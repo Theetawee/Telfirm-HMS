@@ -29,17 +29,16 @@ def prescribe_drug(request, patient_id):
         form = DrugForm(request.POST)
         if form.is_valid():
             drugs = form.cleaned_data['drugs']
-            detail = form.cleaned_data['detail']
 
             if pres.exists():
                 prescription = pres.first()
             else:
-                prescription = Prescription.objects.create(patient=result.patient, detail=detail)
+                prescription = Prescription.objects.create(patient=result.patient)
 
             # Set the selected drugs for the prescription
             prescription.drugs.add(*drugs)  # Use the * to unpack the list
 
-            return redirect('pharm', patient_id=patient_id)
+            return render(request,'doctor/pres.htmx.html',{'patient_id':patient_id,'form':form})
 
     else:
         form = DrugForm()
@@ -49,5 +48,5 @@ def prescribe_drug(request, patient_id):
         "form": form,
         "pres": pres.first()
     }
-    return render(request, 'pharmacy/index.html', context)
+    return render(request, 'doctor/prescribe.html', context)
 
