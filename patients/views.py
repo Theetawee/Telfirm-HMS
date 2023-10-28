@@ -5,8 +5,11 @@ from django.contrib import messages
 from patients.forms import PatientRegistrationForm
 from patients.models import Patient, Result, Test
 from django.views.generic.list import ListView
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+
+@login_required
 def new_patient(request):
     if request.method == 'POST':
         form = PatientRegistrationForm(request.POST)
@@ -28,6 +31,7 @@ def new_patient(request):
         return render(request, 'patients/new.html', context)
 
 
+@login_required
 def view_patient(request, mrn):
     patient = get_object_or_404(Patient,medical_record_number=mrn)
     
@@ -63,6 +67,7 @@ def view_patient(request, mrn):
 
 
 
+@login_required
 def view_results(request,test_id,patient_id):
     test=Test.objects.get(id=test_id)
     patient=get_object_or_404(Patient,id=patient_id)

@@ -2325,11 +2325,6 @@ input:checked + .toggle-bg{
   --tw-ring-color: rgb(110 231 183 / var(--tw-ring-opacity));
 }
 
-.focus\:ring-primary-400:focus{
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(52 211 153 / var(--tw-ring-opacity));
-}
-
 .focus\:ring-primary-500:focus{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));

@@ -2,11 +2,13 @@ from django.shortcuts import get_object_or_404, redirect, render
 from patients.models import  Result,Patient
 from .models import Prescription
 from .forms import DrugForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-def prescribe_drug(request, result_id):
-    result = get_object_or_404(Result, pk=result_id)
+@login_required
+def prescribe_drug(request, patient_id):
+    result = get_object_or_404(Result, pk=patient_id)
     pres = Prescription.objects.filter(patient=result.patient)
 
     if request.method == 'POST':
@@ -23,7 +25,7 @@ def prescribe_drug(request, result_id):
             # Set the selected drugs for the prescription
             prescription.drugs.add(*drugs)  # Use the * to unpack the list
 
-            return redirect('pharm', result_id=result_id)
+            return redirect('pharm', patient_id=patient_id)
 
     else:
         form = DrugForm()
@@ -38,6 +40,6 @@ def prescribe_drug(request, result_id):
 
 
 
-
+@login_required
 def drug_stock(request):
     return render(request,'pharmacy/stock.html' )
