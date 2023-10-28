@@ -58,3 +58,34 @@ test_department_mapping = {
 for test_name, department_name in test_department_mapping.items():
     department, created = Department.objects.get_or_create(name=department_name)
     Test.objects.create(name=test_name, department=department)
+
+
+
+from pharmacy.models import Drug
+
+drugs = [
+    "Aspirin",
+    "Ibuprofen",
+    "Paracetamol",
+    "Amoxicillin",
+    "Lisinopril",
+    "Atorvastatin",
+    "Simvastatin",
+    "Metformin",
+    "Omeprazole",
+    "Ranitidine",
+    "Loratadine",
+    "Cetirizine",
+    "Diazepam",
+    "Warfarin",
+    "Gabapentin",
+    "Sertraline",
+    "Citalopram",
+    "Levothyroxine",
+    "Fluoxetine",
+    "Amlodipine",
+]
+
+for drug in drugs:
+    n = Drug.objects.create(name=drug, stock=5)
+    n.save()

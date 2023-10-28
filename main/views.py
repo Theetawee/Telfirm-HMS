@@ -7,8 +7,12 @@ from patients.models import Patient
 
 def index(request):
     if not request.user.is_authenticated:
-        return render(request,'main/docs.html' )
+        return render(request,'main/intro.html')
     return render(request, "main/index.html")
+
+
+def intro(request):
+    return render(request,'main/intro.html' )
 
 
 def search(request):
