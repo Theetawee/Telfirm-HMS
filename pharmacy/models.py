@@ -8,7 +8,7 @@ class Drug(models.Model):
     stock=models.PositiveIntegerField()
     used=models.PositiveIntegerField(default=0)
     expiry_date=models.DateField(null=True,blank=True)
-    price_number=models.DecimalField(decimal_places=2,default=100,max_digits=100000000)
+    price_number=models.PositiveIntegerField()
     
     def __str__(self):
         return self.name

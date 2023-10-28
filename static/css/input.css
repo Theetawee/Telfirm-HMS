@@ -4,10 +4,10 @@
     display:none;
 }
 .htmx-request .loader{
-    display:inline;
+    display:flex;
 }
 .htmx-request.loader{
-    display:inline;
+    display:flex;
 }
 
 .active{
