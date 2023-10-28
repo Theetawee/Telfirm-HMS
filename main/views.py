@@ -11,6 +11,10 @@ def index(request):
     return render(request, "main/index.html")
 
 
+def intro(request):
+    return render(request,'main/intro.html' )
+
+
 def search(request):
     patient = request.GET.get('patient').upper()
     if patient is None:

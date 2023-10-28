@@ -1,14 +1,15 @@
 from django.urls import path, re_path
-from .views import index,search,docs
+from .views import index,search,docs,intro
 from .utils import service_worker,manifest,offline,RobotsTxtView
 
 
 
 
 urlpatterns=[
-    path('',index,name='home'),
+    path('home',index,name='home'),
     path('search/',search,name='search'),
-    path('docs/',docs,name='docs')
+    path('docs/',docs,name='docs'),
+    path('',intro,name='intro')
 
 ]
 
