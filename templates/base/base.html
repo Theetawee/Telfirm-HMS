@@ -1,6 +1,6 @@
 {% load static %}{% load redotags %}<!DOCTYPE html><html lang="en"><head>
    <meta name="robots" content="nofollow, noindex">
-
+<script src="{% static 'js/htmx.js' %}" async></script>
     
    
    <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0">{% block head %}{% endblock %}{% include 'base/seo.html' %}{% include 'base/pwa.html' %} {% include 'base/fonts.html' %}<link rel="stylesheet" href="{% static 'css/output.css' %}"></head><body id="body" class="bg-white dark:bg-black">{% include 'base/nav.html' %} {% include 'base/messages.html' %}
@@ -66,4 +66,7 @@
 
 
 
-    {% include 'base/js.html' %}</body></html>
+<script src="{% static 'js/main.js' %}"></script>
+{% include 'base/js.html' %}
+</body>
+</html>
