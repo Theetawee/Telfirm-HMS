@@ -38,7 +38,8 @@ def prescribe_drug(request, patient_id):
             # Set the selected drugs for the prescription
             prescription.drugs.add(*drugs)  # Use the * to unpack the list
 
-            return render(request,'doctor/pres.htmx.html',{'patient_id':patient_id,'form':form})
+            # Assuming you want to use an htmx response, render an htmx template
+            return render(request, 'doctor/pres.htmx.html', {'patient_id': patient_id, 'form': form, 'pres': prescription})
 
     else:
         form = DrugForm()
@@ -49,4 +50,3 @@ def prescribe_drug(request, patient_id):
         "pres": pres.first()
     }
     return render(request, 'doctor/prescribe.html', context)
-
