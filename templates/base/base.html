@@ -40,6 +40,14 @@
                <span class="ml-3">Doctor</span>
             </a>
          </li>
+         <li>
+            <button id="install-button" class="block max-w-sm p-6 bg-white border border-primary-600 rounded-sm text-left dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+               <h5 class="mb-2 text-2xl font-medium tracking-tight text-primary-500 dark:text-white">Install Telfirm Hospital Management System</h5>
+               <p class="font-normal text-primary-500 dark:text-gray-400">Enhance your hospital's operations and patient care with Telfirm. Install now for a better experience.</p>
+           </button>
+           
+
+         </li>
          
       </ul>
    </div>
@@ -82,6 +90,38 @@
       document.getElementById('loading').style.display='none'
    })
 </script>
+
+
+<script>
+   window.addEventListener('beforeinstallprompt', (e) => {
+       // Prevent the default browser install prompt
+       e.preventDefault();
+       // Store the event for later use
+       const installPrompt = e;
+       
+       // Display your custom install button or prompt to the user
+       const installButton = document.getElementById('install-button');
+       installButton.style.display = 'block';
+
+       installButton.addEventListener('click', () => {
+           // Trigger the PWA installation prompt
+           installPrompt.prompt();
+           // Wait for the user's choice
+           installPrompt.userChoice.then((choiceResult) => {
+               if (choiceResult.outcome === 'accepted') {
+                   console.log('User accepted the PWA installation');
+               } else {
+                   console.log('User declined the PWA installation');
+               }
+               // Reset the button's display
+               installButton.style.display = 'none';
+           });
+       });
+   });
+</script>
+
+
+
 
 {% endif %}
 
