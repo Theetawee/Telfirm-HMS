@@ -9,3 +9,7 @@ class DrugForm(forms.ModelForm):
         widgets = {
             'drugs': forms.CheckboxSelectMultiple(attrs={'class': 'drug-checkbox'}),
         }
+        
+    def __init__(self, *args, **kwargs):
+        super(DrugForm, self).__init__(*args, **kwargs)
+        self.fields['drugs'].required = True  # Set the 'name' field as required

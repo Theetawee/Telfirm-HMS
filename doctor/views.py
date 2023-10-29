@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-
+from django.contrib import messages
 from patients.models import Patient, Result
 
 from django.db.models import Count, F
@@ -41,7 +41,9 @@ def prescribe_drug(request, patient_id):
             # Assuming you want to use an htmx response, render an htmx template
             return render(request,'doctor/pres.htmx.html',{'patient':patient,'form':form,'prescription':patient.prescription})
                 #return redirect('pres',patient_id=patient_id)
-
+        else:
+            return render(request,'doctor/preserror.htmx.html',{'patient':patient,'form':form,'prescription':patient.prescription})
+            
 
     else:
         form = DrugForm()
