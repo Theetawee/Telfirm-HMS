@@ -1,5 +1,4 @@
 from django.db import models
-from patients.models import Patient
 # Create your models here.
 
 
@@ -17,6 +16,5 @@ class Drug(models.Model):
     
 class Prescription(models.Model):
     drugs=models.ManyToManyField(Drug,blank=True)
-    patient=models.ForeignKey(Patient,on_delete=models.CASCADE)
     def __str__(self):
-        return f'Prescription for {self.patient.name}'
+        return f'Prescription {self.pk}'

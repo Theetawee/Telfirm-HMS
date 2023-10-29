@@ -22,31 +22,32 @@ def index(request):
 
 @login_required
 def prescribe_drug(request, patient_id):
-    result = get_object_or_404(Result, pk=patient_id)
-    pres = Prescription.objects.filter(patient=result.patient)
+    patient = get_object_or_404(Patient, pk=patient_id)
 
     if request.method == 'POST':
         form = DrugForm(request.POST)
         if form.is_valid():
             drugs = form.cleaned_data['drugs']
 
-            if pres.exists():
-                prescription = pres.first()
+            if patient.prescription:
+                prescription = patient.prescription
             else:
-                prescription = Prescription.objects.create(patient=result.patient)
+                prescription = Prescription.objects.create()
+                patient.prescription = prescription
+                patient.save()
 
-            # Set the selected drugs for the prescription
-            prescription.drugs.add(*drugs)  # Use the * to unpack the list
+            # Add selected drugs to the prescription
+            prescription.drugs.add(*drugs)
 
             # Assuming you want to use an htmx response, render an htmx template
-            return render(request, 'doctor/pres.htmx.html', {'patient_id': patient_id, 'form': form, 'pres': prescription})
+            return redirect('pres',patient_id=patient_id)
 
     else:
         form = DrugForm()
 
     context = {
-        "result": result,
         "form": form,
-        "pres": pres.first()
+        "prescription": patient.prescription,
+        'patient':patient
     }
     return render(request, 'doctor/prescribe.html', context)

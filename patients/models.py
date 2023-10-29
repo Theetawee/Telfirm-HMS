@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from accounts.models import Department, MedicalWorker
 from django.db.models.signals import post_save
 from patients.utils import GENDER_CHOICES, RESULTS_FAST, STATUS_CHOICES, WARD
+from pharmacy.models import Prescription
 
 # Create your models here.
 
@@ -50,6 +51,8 @@ class Patient(models.Model):
     comments = models.TextField(blank=True, null=True)
 
     tests = models.ManyToManyField(Test, blank=True,related_name='tests')
+
+    prescription=models.ForeignKey(Prescription,on_delete=models.SET_NULL,null=True,blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} (MRN: {self.medical_record_number})"
