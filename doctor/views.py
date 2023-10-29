@@ -38,9 +38,10 @@ def prescribe_drug(request, patient_id):
 
             # Add selected drugs to the prescription
             prescription.drugs.add(*drugs)
-
             # Assuming you want to use an htmx response, render an htmx template
-            return redirect('pres',patient_id=patient_id)
+            return render(request,'doctor/pres.htmx.html',{'patient':patient,'form':form,'prescription':patient.prescription})
+                #return redirect('pres',patient_id=patient_id)
+
 
     else:
         form = DrugForm()
