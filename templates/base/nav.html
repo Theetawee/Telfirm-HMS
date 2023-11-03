@@ -1,11 +1,11 @@
 {% load static %}
-<header class="bg-white p-4 border-b border-gray-300 z-50 fixed top-0 left-0 w-full">
+<header class="bg-white p-2 border-b border-gray-100 z-50 fixed top-0 left-0 w-full">
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
             <div>
                 <a href="{% url 'home' %}" hx-get="{% url 'home' %}" hx-indicator="#loader" hx-push-url="true" hx-target="#body" class="flex items-center gap-2">
                     <img src="{% static 'images/logo.svg'%}" class="w-10 h-10" alt="Telfirm Logo">
-                    <span class="text-xl font-semibold text-gray-600">Telfirm</span>
+                    <span class="text-xl text-gray-600">Telfirm</span>
                 </a>
             </div>
             
@@ -16,12 +16,13 @@
             
 <form method="get" action="{% url 'search' %}">   
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-    <div class="flex items-center gap-3">
-        <input type="search" name="patient" value="{{request.GET.patient}}" autocomplete="on" id="default-search" class="block w-full  text-sm text-gray-900 border border-gray-300 rounded-sm bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search patient by name or MRN..." required>
+    <div class="flex items-center gap-2">
+        <input type="search" name="patient" value="{{request.GET.patient}}" autocomplete="on" id="default-search" class="block w-full px-4 py-1.5 text-sm text-gray-900 border border-gray-200 rounded-md bg-gray-50 focus:ring-primary-500 focus:right-1 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search patient by name or MRN..." required>
         <button>
-            <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+</svg>
+
         </button>
     </div>
 </form>
@@ -29,7 +30,7 @@
         </div>
 
         <div>
-            <button  class="flex gap-6 items-center font-medium justify-center" type="button"><span title="Logged as {{user.name}}" class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <button  class="flex gap-2 items-center font-medium justify-center" type="button"><span title="Logged as {{user.name}}" class="flex items-center gap-1 font-light"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
                {{ user.name }} </span>

@@ -6,6 +6,7 @@ from patients.forms import PatientRegistrationForm
 from patients.models import Patient, Result, Test
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 # Create your views here.
 
 
@@ -96,3 +97,21 @@ class PatientListView(ListView):
         context['results'] = Result.objects.all()
         context['patients_num']=Patient.objects.all().count()
         return context
+
+def patientsList(request):
+    patients=Patient.objects.all()[:1]
+    context={'patients':patients}
+    return render(request,'patients/index.html',context)
+
+
+
+def load_p(request):
+    print('yes')
+    patients=Patient.objects.all()
+    p=Paginator(patients,1)
+    page=request.GET.get('page',1)
+    patients_list=p.get_page(page)
+    context={
+        'patients':patients_list
+    }
+    return render(request,'main/list.html',context)

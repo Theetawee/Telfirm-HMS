@@ -11,9 +11,13 @@
 }
 
 .active{
-    @apply border-l-4 border-primary-500 rounded-none;
+    @apply border-l-4 border-primary-500 rounded-md bg-primary-100 ;
 }
 
 .tests input{
     @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:right-0 dark:bg-gray-700 dark:border-gray-600;
+}
+
+.nav-link{
+    @apply dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ;
 }
