@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
             <div>
-                <a href="{% url 'home' %}" hx-get="{% url 'home' %}" hx-indicator="#loader" hx-push-url="true" hx-target="#body" class="flex items-center gap-2">
+                <a href="{% url 'home' %}" hx-get="{% url 'home' %}" hx-indicator="#loader" hx-push-url="true" hx-target="#body" hx-swap="outerHTML transition:true" class="flex items-center gap-2">
                     <img src="{% static 'images/logo.svg'%}" class="w-10 h-10" alt="Telfirm Logo">
                     <span class="text-xl text-gray-600">Telfirm</span>
                 </a>
@@ -46,6 +46,6 @@
 </header>
 
 
-<div style="height: 100px;"></div>
+<div style="height: 70px;"></div>
       
 </div>
