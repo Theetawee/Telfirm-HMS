@@ -36,5 +36,33 @@ def search(request):
     return render(request, 'main/search.html', context)
 
 
+def get_pending(request):
+    patients=Patient.objects.all()
+    context={
+        'patients':patients
+    }
+    return render(request,'main/pending.htmx.html',context)
+
+
+
+def get_done(request):
+    patients=Patient.objects.all()
+    context={
+        'patients':patients
+    }
+    return render(request,'main/done.htmx.html',context)
+
+
+def get_all(request):
+    patients=Patient.objects.all()
+    context={
+        'patients':patients
+    }
+    return render(request,'main/all.htmx.html',context)
+
+
+
+
+
 def docs(request):
     return render(request,'main/docs.html' )
