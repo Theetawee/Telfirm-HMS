@@ -11,7 +11,7 @@ def index(request):
         return render(request,'main/intro.html')
     else:
         patients_list=Patient.objects.all()
-        p=Paginator(patients_list,1)
+        p=Paginator(patients_list,10)
         page=int(request.GET.get('page',1))
         patients=p.get_page(page)
         context={
@@ -22,13 +22,11 @@ def index(request):
 
 def load_more(request):
     patients_list=Patient.objects.all()
-    p=Paginator(patients_list,1)
+    p=Paginator(patients_list,10)
     page=int(request.GET.get('page',1))
     patients=p.get_page(page)
-    results=Result.objects.all()
     context={
         'patients':patients,
-        'results':results
     }
     return render(request, "main/sect.htmx.html",context)
 
@@ -58,7 +56,7 @@ def get_pending(request):
         undone_result_count=Count('result', filter=Q(result__done=False))
     ).filter(undone_result_count__gt=0)
 
-    p = Paginator(patients_with_undone_results, 1)
+    p = Paginator(patients_with_undone_results, 10)
     page = int(request.GET.get('page', 1))
     patients = p.get_page(page)
 
@@ -73,7 +71,7 @@ def get_done(request):
         done_result_count=Count('result', filter=Q(result__done=True))
     ).filter(done_result_count__gt=0)
 
-    p = Paginator(patients_with_done_results, 1)
+    p = Paginator(patients_with_done_results, 10)
     page = int(request.GET.get('page', 1))
     patients = p.get_page(page)
 
@@ -88,10 +86,9 @@ def get_done(request):
 
 def get_all(request):
     patients_list=Patient.objects.all()
-    p=Paginator(patients_list,1)
+    p=Paginator(patients_list,10)
     page=int(request.GET.get('page',1))
     patients=p.get_page(page)
-    results=Result.objects.all()
     
     context={
         'patients':patients
