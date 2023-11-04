@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-
+from django.core.paginator import Paginator
 from patients.models import Patient,Result
 
 
@@ -9,7 +9,10 @@ def index(request):
     if not request.user.is_authenticated:
         return render(request,'main/intro.html')
     else:
-        patients=Patient.objects.all()
+        patients_list=Patient.objects.all()
+        p=Paginator(patients_list,1)
+        page=int(request.GET.get('page',1))
+        patients=p.get_page(page)
         results=Result.objects.all()
         context={
             'patients':patients,
@@ -59,7 +62,6 @@ def get_all(request):
         'patients':patients
     }
     return render(request,'main/all.htmx.html',context)
-
 
 
 
