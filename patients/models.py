@@ -77,13 +77,13 @@ class Patient(models.Model):
     
 
     @property
-    def has_results(self,patient):
-        if Result.objects.filter(test=self,patient=patient).exists():
-            return True
-        else:
-            return False
-    
-    
+    def done_tests(self):
+        results = Result.objects.filter(patient=self)
+        for result in results:
+            if not result.done:
+                return False
+        return True 
+
     def __str__(self):
         return self.name
 

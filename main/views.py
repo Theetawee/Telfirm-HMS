@@ -2,13 +2,20 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
-from patients.models import Patient
+from patients.models import Patient,Result
 
 
 def index(request):
     if not request.user.is_authenticated:
         return render(request,'main/intro.html')
-    return render(request, "main/index.html")
+    else:
+        patients=Patient.objects.all()
+        results=Result.objects.all()
+        context={
+            'patients':patients,
+            'results':results
+        }
+    return render(request, "main/index.html",context)
 
 
 def intro(request):
