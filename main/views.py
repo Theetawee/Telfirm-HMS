@@ -68,16 +68,22 @@ def get_pending(request):
     return render(request, 'main/pending.htmx.html', context)
 
 
-
 def get_done(request):
-    patients_list=Patient.objects.all()
-    p=Paginator(patients_list,1)
-    page=int(request.GET.get('page',1))
-    patients=p.get_page(page)
-    context={
-        'patients':patients
+    patients_with_done_results = Patient.objects.annotate(
+        done_result_count=Count('result', filter=Q(result__done=True))
+    ).filter(done_result_count__gt=0)
+
+    p = Paginator(patients_with_done_results, 1)
+    page = int(request.GET.get('page', 1))
+    patients = p.get_page(page)
+
+    context = {
+        'patients': patients
     }
-    return render(request,'main/done.htmx.html',context)
+    return render(request, 'main/done.htmx.html', context)
+
+
+
 
 
 def get_all(request):
