@@ -4,7 +4,7 @@
         <div class="bg-white dark:bg-gray-800 relative shadow sm:rounded-lg overflow-hidden">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div class="w-full md:w-1/2" id="pform">
-                    <form class="flex items-center" method="post" hx-post="{% url 'search' %}" hx-target="#pform">
+                    <form class="flex items-center" hx-indicator="#loader" hx-swap="outerHTML transition:true" method="post" hx-post="{% url 'search' %}" hx-target="#pform">
                         {% csrf_token %}
                         <label for="simple-search" class="sr-only">Search</label>
                         <div class="relative w-full">
