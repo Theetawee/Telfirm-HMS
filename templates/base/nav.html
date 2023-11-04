@@ -14,7 +14,7 @@
 
         <div class="w-2/5">
             
-<form method="post" action="{% url 'search' %}" hx-post="{% url 'search' %}" hx-target="#pform">  
+<form method="post" action="{% url 'search' %}" hx-swap="outerHTML transition:true" hx-indicator="#loader" hx-post="{% url 'search' %}" hx-target="#pform">  
     {% csrf_token %} 
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
     <div class="flex items-center gap-2">
