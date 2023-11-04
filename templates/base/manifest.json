@@ -11,7 +11,7 @@
 	},
 	"lang": "en",
 	"orientation": "portrait",
-	"background_color": "#ffff",
+	"background_color": "#ffffff",
 	"display_override": ["window-controls-overlay"],
 	"categories": [
 		"Healthcare"
