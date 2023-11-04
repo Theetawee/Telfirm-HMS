@@ -52,32 +52,20 @@
                     </thead>
                     <tbody>
                         {% for patient in patients %}
-                        {% if not patient.done_tests %}
+                        
                         <tr class="border-b dark:border-gray-700">
                             <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{patient.medical_record_number}}</th>
                             <td class="px-4 py-3">{{patient.name}}</td>
                             <td class="px-4 py-3">{{patient.ward}}</td>
 
-                            {% if patient.done_tests %}
-
-                            <td class="px-4 py-3">
-                                
-                                <button type="button" class="flex items-center gap-2 justify-center ">
-                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                        Completed
-                    </button>
-                    
-                            </td>
-
-                            {% else  %}
-
+                            
                             <td class="px-4 py-3">
                                 <button type="button" class="flex items-center  gap-2 justify-center ">
                         <span class="w-2 h-2 rounded-full bg-yellow-300"></span>
                         Pending
                     </button>
                             </td>
-                            {% endif %}
+                            
 
 
                             <td class="px-4 py-3">{{patient.gender}}</td>
@@ -102,7 +90,6 @@
                                 </div>
                             </td>
                         </tr>
-                        {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>
