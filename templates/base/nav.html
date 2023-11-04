@@ -14,7 +14,8 @@
 
         <div class="w-2/5">
             
-<form method="get" action="{% url 'search' %}">   
+<form method="post" action="{% url 'search' %}" hx-post="{% url 'search' %}" hx-target="#pform">  
+    {% csrf_token %} 
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
     <div class="flex items-center gap-2">
         <input type="search" name="patient" value="{{request.GET.patient}}" autocomplete="on" id="default-search" class="block w-full px-4 py-1.5 text-sm text-gray-900 border border-gray-200 rounded-md bg-gray-50 focus:ring-primary-500 focus:right-1 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search patient by name or MRN..." required>
