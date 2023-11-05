@@ -8,20 +8,22 @@
 {% block content %}
 
 <section class="px-8 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div>
-            <h1 class="text-2xl font-bold mb-2">Patient Information</h1>
-            <ul class="list-disc">
-                <li><strong>Name:</strong> {{ patient.name }}</li>
-                <li><strong>Gender:</strong> {{ patient.gender }}</li>
-                <li><strong>MRN:</strong> {{ patient.medical_record_number }}</li>
-                <li><strong>Date of Birth:</strong> {{ patient.date_of_birth }} ({{ patient.age }})</li>
-                <li><strong>Ward:</strong> {{ patient.ward }}</li>
-                <li><strong>Registered on:</strong> {{ patient.admission_date }}</li>
+            <div class="bg-white p-4 rounded-xl">
+            <h1 class="text-xl mb-2">Patient Information</h1>
+            <ul class="list-disc pl-4">
+                <li>Name: {{ patient.name }}</li>
+                <li>Gender: {{ patient.gender }}</li>
+                <li>MRN: {{ patient.medical_record_number }}</li>
+                <li>Date of Birth: {{ patient.date_of_birth }} ({{ patient.age }})</li>
+                <li>Ward: {{ patient.ward }}</li>
+                <li>Registered on: {{ patient.admission_date }}</li>
             </ul>
+            </div>
         </div>
-        <div>
-            <h2 class="text-xl font-bold">Allergies</h2>
+        <div class="bg-white p-4 rounded-xl">
+            <h2 class="text-xl">Allergies</h2>
             {% if patient.allergies %}
                 <p>{{ patient.allergies }}</p>
             {% else %}
@@ -30,17 +32,17 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div>
-            <h2 class="text-xl font-bold">Medical Conditions</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white p-4 rounded-xl">
+            <h2 class="text-xl">Medical Conditions</h2>
             {% if patient.medical_conditions %}
                 <p>{{ patient.medical_conditions|linebreaks }}</p>
             {% else %}
                 <p class="text-red-500">No medical conditions</p>
             {% endif %}
         </div>
-        <div>
-            <h2 class="text-xl font-bold">Current Medications</h2>
+        <div class="bg-white rounded-xl p-4">
+            <h2 class="text-xl">Current Medications</h2>
             {% if patient.current_medications %}
                 <p>{{ patient.current_medications|linebreaks }}</p>
             {% else %}
