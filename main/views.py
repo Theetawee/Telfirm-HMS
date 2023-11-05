@@ -16,6 +16,7 @@ def index(request):
         patients=p.get_page(page)
         context={
             'patients':patients,
+            'patients_num':patients_list.count()
         }
     return render(request, "main/index.html",context)
 
