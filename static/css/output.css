@@ -1983,6 +1983,10 @@ input:checked + .toggle-bg{
   padding: 1.5rem;
 }
 
+.p-1\.5{
+  padding: 0.375rem;
+}
+
 .px-2{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
