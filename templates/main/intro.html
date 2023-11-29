@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>{% load static %}
     <meta charset="UTF-8">
     {% include 'base/fonts.html' %}
     <meta name="viewport" content="width=device-width">
     <title>Telfirm Hospital Management System.</title>
     <script src="{% static 'js/htmx.js' %}"></script>
-    <script type="module">
-            document.documentElement.classList.remove('no-js');
-            document.documentElement.classList.add('js');
-    </script>
     <meta name="description" content="Transform healthcare administration with Telfirm Hospital Management System. Streamline patient care and optimize operations.">
     <meta property="og:title" content="Telfirm Hospital Management System"> 
     <meta property="og:url" content="{{request.build_absolute_uri}}"> 
@@ -25,47 +21,143 @@
     <link rel="apple-touch-icon" href="{% static 'images/180.png' %}">
 {% include 'base/pwa.html' %}    
     <link rel="stylesheet" href="{% static 'css/output.css' %}"> 
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Telfirm Hospital Management System.",
+        "image": [
+          "{% static 'images/512.png' %}"
+         ],
+        "description": "Transform healthcare administration with Telfirm Hospital Management System. Streamline patient care and optimize operations.",
+        "sku": "telfirm-v1.1",
+        "mpn": "57FA1DD1",
+        "brand": {
+          "@type": "Brand",
+          "name": "Telfirm™"
+        },
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 4,
+            "bestRating": 5
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Mulindwa Raymond"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.4,
+          "reviewCount": 89
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "offerCount": 5,
+          "lowPrice": 159.99,
+          "highPrice": 599.99,
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+  
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://www.waanverse.com/",
+      "sameAs": "https://www.linkedin.com/company/waanverse/",
+      "logo": "{% static 'images/waanverse.png' %}",
+      "name": "Waanverse Corp.",
+      "description": "Creating new a world through Technology for everyone / Waanverse.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kampala",
+        "addressLocality": "Kampala",
+        "addressCountry": "UG",
+        "addressRegion": "Kampala",
+        "postalCode": "1001"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "support@waanverse.com",
+        "telephone": "+256779730256"
+      }
+    }
+    </script>
+  
+
+
 </head>
 <body id="body">
     
-    <header>
-        <nav class="bg-white border border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
-            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-                <a href="{% url 'home' %}" hx-get="{% url 'home' %}" hx-target="#body" hx-push-url="true" hx-swap="outerHTML transition:true" hx-indicator="#loader" class="flex items-center">
-                    <img src="{% static 'images/logo.svg' %}" class="mr-3 h-6 sm:h-9" alt="Waanverse Corp Logo" />
-                    <span class="self-center text-xl  whitespace-nowrap dark:text-white">Telfirm</span>
-                </a>
-                <div class="flex items-center gap-3">
-                    <a href="{% url 'login' %}"  class="px-4 py-1.5 font-semibold bg-primary-500 text-white rounded-md text-sm" rel="nofollow">Login</a>
-                    <a href="mailto:support@waanverse.com" class="text-sm"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                      </svg>
-                      </a>
-                </div>
-            </div>
-        </nav>
-    </header>
+
+
+
+
+
+
+<header>
+
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+        <a href="{% url 'home' %}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="{% static 'images/logo.svg' %}" class="h-10 w-10" alt="Telfirm HMS Logo" />
+            <span class="self-center text-2xl font-light whitespace-nowrap dark:text-white">Telfirm HMS</span>
+        </a>
+        <div class="flex items-center space-x-6 rtl:space-x-reverse">
+            <a href="tel:+256779730256" class="text-sm  text-gray-500 dark:text-white hover:underline">(+256) 779730256</a>
+            <a href="{% url 'login' %}" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline">Login</a>
+        </div>
+    </div>
+</nav>
+<nav class="bg-gray-50 dark:bg-gray-700">
+    <div class="max-w-screen-xl px-4 py-3 mx-auto">
+        <div class="flex items-center">
+            <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+                <li>
+                    <a href="#" class="text-gray-900 dark:text-white hover:underline" aria-current="page">About Telfirm™</a>
+                </li>
+                <li>
+                    <a href="#" class="text-gray-900 dark:text-white hover:underline">Documentation</a>
+                </li>
+                <li>
+                    <a href="#" class="text-gray-900 dark:text-white hover:underline">Support</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+</header>
+
+
+
+
+
 
 
 
 
     <section class="bg-white dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12">
-            <h1 class="mb-4 text-xl uppercase font-medium tracking-tight leading-none text-gray-900  dark:text-white">Telfirm Hospital Management System.</h1>
-            <p class="mb-8 text-3xl font-normal text-gray-500 dark:text-gray-400">Your Partner in Transforming Healthcare with Innovative Software and Technology solutions</p>
-            <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-                <a href="mailto:support@waanverse.com" class="btn btn-secondary">Email Us</a>
-            </div>
+            <h1 class="mb-4 text-4xl uppercase text-gray-700 dark:text-white">Telfirm Hospital Management System.</h1>
+            <p class="mb-8 font-normal text-gray-500 dark:text-gray-400">Your Partner in Transforming Healthcare with Innovative Software and Technology solutions</p>
         </div>
     </section>
     
     
     <section class="bg-gray-100 dark:bg-gray-900">
         <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
-            <img class="w-full block" src="{% static 'images/intro.jpg' %}" alt="dashboard ">
+            <img class="w-full block rounded-xl" src="{% static 'images/intro.jpg' %}" alt="Health Management System">
             <div class="mt-4 md:mt-0">
                 <h2 class="mb-4 text-4xl tracking-tight  text-gray-900 dark:text-white">Empowering Health Through Innovative Technology</h2>
-                <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Waanverse Corporation is your partner in advancing healthcare solutions. We're dedicated to creating cutting-edge software that enhances patient care, improves medical processes, and connects healthcare professionals worldwide.</p>
+                <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Waanverse Corp. is your partner in advancing healthcare solutions. We're dedicated to creating cutting-edge software that enhances patient care, improves medical processes, and connects healthcare professionals worldwide.</p>
             </div>
         </div>
     </section>
