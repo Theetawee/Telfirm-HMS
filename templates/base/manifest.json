@@ -2,7 +2,7 @@
   "{% load static %}": "",
   "name": "Telfirm Hospital Management System",
   "short_name": "Telfirm",
-  "start_url": "/",
+  "start_url": "/accounts/login/",
   "theme_color": "#059669",
   "scope": "/",
   "prefer_related_applications": false,

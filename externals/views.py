@@ -7,7 +7,10 @@ from django.contrib import messages
 
 
 def index(request):
-    return render(request, "externals/index.html")
+    title = "Telfirm Hospital Management System."
+    description = "Transform healthcare administration with Telfirm Hospital Management System. Streamline patient care and optimize operations."
+    context = {"title": title, "description": description}
+    return render(request, "externals/index.html", context)
 
 
 def about(request):
@@ -15,17 +18,12 @@ def about(request):
 
 
 def support(request):
-    title = "Contact Redo Developers Inc. - Get in Touch with Us"
-    description = "Contact Redo Developers Inc. for any inquiries or assistance. We're here to help."
-    og_title = "Get in Touch with Redo Developers Inc."
-    image_url = "https://theetawee.github.io/company_staticfiles/images/logo.png"
-    og_type = "website"
+    title = "Request for Telfirm Demo - Get in Touch with Us"
+    description = "Experience the power of Telfirm firsthand. Request a demo today."
     context = {
         "title": title,
         "description": description,
-        "og_title": og_title,
-        "image": image_url,
-        "og_type": og_type,
+        
     }
 
     if request.method == "POST":
