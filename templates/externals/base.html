@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    {% endblock %}
+    {% load static %}
+    <meta charset="UTF-8">
+    {% include 'base/fonts.html' %}
+    <meta name="viewport" content="width=device-width">
+    <title>Telfirm Hospital Management System.</title>
+    <script src="{% static 'js/htmx.js' %}"></script>
+    <meta name="description" content="Transform healthcare administration with Telfirm Hospital Management System. Streamline patient care and optimize operations.">
+    <meta property="og:title" content="Telfirm Hospital Management System"> 
+    <meta property="og:url" content="{{request.build_absolute_uri}}"> 
+    <meta property="og:description" content="OG Transform healthcare administration with Telfirm Hospital Management System. Streamline patient care and optimize operations.">  
+    <meta property="og:image" content="{% static 'images/180.png' %}"> 
+    <meta property="og:image:alt" content="Telfirm">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="large-image-twitter.jpg"> 
+    <link rel="canonical" href="{{request.build_absolute_uri}}"> 
+    <link rel="icon" href="{% static 'images/favicon.ico'%}">
+    <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{% static 'images/180.png' %}">
+    {% include 'base/pwa.html' %}    
+    <link rel="stylesheet" href="{% static 'css/output.css' %}"> 
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Telfirm Hospital Management System.",
+        "image": [
+          "{% static 'images/512.png' %}"
+         ],
+        "description": "Transform healthcare administration with Telfirm Hospital Management System. Streamline patient care and optimize operations.",
+        "sku": "telfirm-v1.1",
+        "mpn": "57FA1DD1",
+        "brand": {
+          "@type": "Brand",
+          "name": "Telfirm™"
+        },
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 4,
+            "bestRating": 5
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Mulindwa Raymond"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.4,
+          "reviewCount": 987
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "offerCount": 5,
+          "lowPrice": 159.99,
+          "highPrice": 599.99,
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+  
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://www.waanverse.com/",
+      "sameAs": "https://www.linkedin.com/company/waanverse/",
+      "logo": "{% static 'images/waanverse.png' %}",
+      "name": "Waanverse Corp.",
+      "description": "Creating new a world through Technology for everyone / Waanverse.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kampala",
+        "addressLocality": "Kampala",
+        "addressCountry": "UG",
+        "addressRegion": "Kampala",
+        "postalCode": "1001"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "support@waanverse.com",
+        "telephone": "+256779730256"
+      }
+    }
+    </script>
+  
+
+
+</head>
+<body id="body">
+    
+<!-- {% include 'externals/nav.html'%} -->
+
+<main class="min-h-screen">
+{% block content %}{% endblock %}
+</main>
+
+
+{% include 'externals/footer.html' %}
+
+
+
+</body>
+</html>

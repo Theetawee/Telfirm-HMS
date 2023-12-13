@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "accounts",
     "cloudinary_storage",
     "cloudinary",
-    
+    'externals',
     "patients",
     "laboratory",
     "billing",

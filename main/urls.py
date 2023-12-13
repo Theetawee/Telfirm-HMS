@@ -27,11 +27,3 @@ urlpatterns=[
 
 
 
-
-
-urlpatterns+=[
-    re_path(r'^serviceworker\.js$', service_worker, name='sw'),
-    re_path(r'^manifest\.json$', manifest, name='manifest'),
-    path('offline/',offline,name='offline'),
-    re_path(r'^robots\.txt$', RobotsTxtView.as_view()),
-]
