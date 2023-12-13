@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login,logout
-
+from django.contrib import messages
 
 def login_view(request):
     referring_url = request.META.get('HTTP_REFERER', '/')
@@ -13,6 +13,7 @@ def login_view(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
+            messages.success(request,'You are now logged in...')
             return redirect('home')
     else:
         form = AuthenticationForm()

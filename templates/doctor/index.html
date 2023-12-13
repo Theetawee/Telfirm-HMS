@@ -1,60 +1,50 @@
-{% extends 'base/base.html' %}
-{% block head %}
+{% extends 'base/base.html' %} {% block head %}
 
 <title>Doctor</title>
 
-{% endblock %}
-{% block content %}
+{% endblock %} {% block content %}
 
 <section class="py-8 px-4">
-    <div class="max-w-screen-lg mx-auto">
-        <div>
-            <h1 class="text-3xl mb-6">Completed tests</h1>
+  <div class="max-w-screen-lg mx-auto">
+    <div>
+      <h1 class="text-3xl mb-6">Completed tests</h1>
 
-
-            <div class="relative overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Name
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                MRN
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Tests
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for patient in patients %}
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{patient.name}}
-                            </th>
-                            <td class="px-6 py-4">
-                                {{patient.medical_record_number}}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{patient.done_results}}
-                            </td>
-                            <td class="px-6 flex items-center gap-6 py-4">
-                                <a href="{% url 'view' patient.medical_record_number %}">View results</a>
-                                <a href="{% url 'pres' patient.id %}">Prescribe medication</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            
-        </div>
+      <div class="relative overflow-x-auto">
+        <table
+          class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+        >
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+          >
+            <tr>
+              <th scope="col" class="px-6 py-3">Name</th>
+              <th scope="col" class="px-6 py-3">MRN</th>
+              <th scope="col" class="px-6 py-3">Tests</th>
+              <th scope="col" class="px-6 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for patient in patients %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {{patient.name}}
+              </th>
+              <td class="px-6 py-4">{{patient.mrn}}</td>
+              <td class="px-6 py-4">{{patient.done_results}}</td>
+              <td class="px-6 flex items-center gap-6 py-4">
+                <a href="{% url 'view' patient.mrn %}">View results</a>
+                <a href="{% url 'pres' patient.id %}">Prescribe medication</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </section>
-
 
 {% endblock %}

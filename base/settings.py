@@ -24,7 +24,6 @@ ALLOWED_HOSTS = ["*"]
 AUTH_USER_MODEL = "accounts.MedicalWorker"
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,13 +39,13 @@ INSTALLED_APPS = [
     "accounts",
     "cloudinary_storage",
     "cloudinary",
-    'externals',
+    "externals",
     "patients",
     "laboratory",
     "billing",
     "pharmacy",
     "invetory",
-    "doctor"
+    "doctor",
 ]
 
 MIDDLEWARE = [
@@ -144,16 +143,16 @@ if DEBUG == True:
 
 else:
     # ALLOWED_HOSTS = [''] update allowed hosts for production
-    
+
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'neondb',
-            'USER': 'tawee.drake',
-            'PASSWORD': os.environ.get('DB_PASSWORD'),
-            'HOST': 'ep-purple-bonus-60535466.eu-central-1.aws.neon.tech',
-            'PORT': '5432',
-            'OPTIONS': {'sslmode': 'require'},
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "neondb",
+            "USER": "tawee.drake",
+            "PASSWORD": os.environ.get("DB_PASSWORD"),
+            "HOST": "ep-purple-bonus-60535466.eu-central-1.aws.neon.tech",
+            "PORT": "5432",
+            "OPTIONS": {"sslmode": "require"},
         }
     }
     CLOUDINARY_STORAGE = {
@@ -179,10 +178,10 @@ MESSAGE_TAGS = {
 }
 
 
-LOGIN_URL= 'login'
+LOGIN_URL = "login"
 
-SESSION_COOKIE_AGE=3600
-#SESSION_COOKIE_AGE = 12 * 60 * 60  # 12 hours in seconds
+SESSION_COOKIE_AGE = 3600
+# SESSION_COOKIE_AGE = 12 * 60 * 60  # 12 hours in seconds
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
@@ -234,3 +233,9 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 #         },
 #     }
 # }
+
+
+if DEBUG:
+    BACKUP_DIRECTORY = os.path.join(BASE_DIR, "backups/dev")
+else:
+    BACKUP_DIRECTORY = os.path.join(BASE_DIR, "backups/prod")

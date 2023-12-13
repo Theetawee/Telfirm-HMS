@@ -7,81 +7,81 @@
 {% block content %}
 
 
-<section class="max-w-screen-xl mx-auto py-2 px-8">
-    <h1 class="text-3xl mb-6 font-medium">New Patient form</h1>
+<section class="max-w-screen-xl mx-auto py-8 px-8">
+    <h1 class="text-3xl mb-6 ">New Patient form</h1>
     <div>
         <form id="auth_form" action="{% url 'new_patient' %}" method="post">
             {% csrf_token %}
             <div class="grid gap-10 mb-8 md:grid-cols-2">
                 <div>
-                    <label for="id_first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
+                    <label for="id_first_name" class="block mb-2 text-sm  text-gray-900 dark:text-white">First name</label>
                     {{form.first_name|is_input}}
                 </div>
                 <div>
-                    <label for="id_last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
+                    <label for="id_last_name" class="block mb-2 text-sm  text-gray-900 dark:text-white">Last name</label>
                     {{form.last_name|is_input}}
                 </div>
                 <div class="grid grid-cols-3 gap-6">
                     <div>
-                        <label for="id_gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                        <label for="id_gender" class="block mb-2 text-sm  text-gray-900 dark:text-white">Gender</label>
                         {{form.gender|is_input}}
                     </div>
                     <div>
-                        <label for="id_ward" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ward</label>
+                        <label for="id_ward" class="block mb-2 text-sm  text-gray-900 dark:text-white">Ward</label>
                         {{form.ward|is_input}}
                     </div>
                     <div>
-                        <label for="id_status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                        <label for="id_status" class="block mb-2 text-sm  text-gray-900 dark:text-white">Status</label>
                         {{form.status|is_input}}
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-6">
                     <div>
-                        <label for="id_date_of_birth" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date of birth</label>
+                        <label for="id_date_of_birth" class="block mb-2 text-sm  text-gray-900 dark:text-white">Date of birth</label>
                         {{form.date_of_birth|is_input}}
                     </div>  
                     <div>
-                        <label for="id_contact_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact Number</label>
+                        <label for="id_contact_number" class="block mb-2 text-sm  text-gray-900 dark:text-white">Contact Number</label>
                         {{form.contact_number|is_input}}
                     </div>
                 </div>
             </div>
             <div class="grid grid-cols-3 gap-10 mb-6">
                     <div>
-                        <label for="id_address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                        <label for="id_address" class="block mb-2 text-sm  text-gray-900 dark:text-white">Address</label>
                         {{form.address|is_input}}
                     </div>  
                     <div>
-                        <label for="id_emergency_contact_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Emergency Contact Name</label>
+                        <label for="id_emergency_contact_name" class="block mb-2 text-sm  text-gray-900 dark:text-white">Emergency Contact Name</label>
                         {{form.emergency_contact_name|is_input}}
                     </div>
                     <div>
-                        <label for="id_emergency_contact_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Emergency Contact Number</label>
+                        <label for="id_emergency_contact_number" class="block mb-2 text-sm  text-gray-900 dark:text-white">Emergency Contact Number</label>
                         {{form.emergency_contact_number|area}}
                     </div>  
                     
             </div>
             <div class="grid grid-cols-2 gap-6 mb-6">
                     <div>
-                        <label for="id_allergies" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Allergies</label>
+                        <label for="id_allergies" class="block mb-2 text-sm  text-gray-900 dark:text-white">Allergies</label>
                         {{form.allergies|area}}
                     </div>  
                     <div>
-                        <label for="id_current_medications" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current Medications</label>
+                        <label for="id_current_medications" class="block mb-2 text-sm  text-gray-900 dark:text-white">Current Medications</label>
                         {{form.current_medications|area}}
                     </div>
                     <div>
-                        <label for="id_medical_conditions" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Medical Conditions</label>
+                        <label for="id_medical_conditions" class="block mb-2 text-sm  text-gray-900 dark:text-white">Medical Conditions</label>
                         {{form.medical_conditions|area}}
                     </div>  
                     <div>
-                        <label for="id_comments" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Doctor's Comments</label>
+                        <label for="id_comments" class="block mb-2 text-sm  text-gray-900 dark:text-white">Doctor's Comments</label>
                         {{form.comments|area}}
                     </div>  
                     
             </div>
             <div class="mb-12">
-            <h2 class="text-2xl font-medium mb-6 mt-4">Tests to be done</h2>
+            <h2 class="text-2xl  mb-6 mt-4">Tests to be done</h2>
             <div class="grid grid-cols-3 gap-x-6 gap-y-1">
                 {% for test in form.tests %}
                 <div class="tests">

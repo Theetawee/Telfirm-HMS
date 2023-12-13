@@ -1,36 +1,23 @@
 # Define choices for specialization
+import random, string
+from .models import Patient
 
 
-GENDER_CHOICES = (
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('O', 'Other'),
-    )
+RESULTS_STATUS = (("p", "Pending"), ("d", "Done"), ("c", "Confirmed"))
 
-STATUS_CHOICES = (
-    ('A', 'Admitted'),
-    ('D', 'Discharged'),
-    ('O', 'Other'),
+TEST_LEVELS = (
+    ("one", "one"),  # postive/negative test
+    ("two", "two"),  # needs explain
 )
 
-WARD=(
-    ('OPD','OPD'),
-    ('IPD','IPD')
-)
 
-RESULTS_FAST=(
-    ('P','POSTIVE'),
-    ('N','NEGATIVE')
-)
+def create_mrn():
+    while True:
+        # Generate a new MRN
+        initials = "".join(random.choices(string.ascii_uppercase, k=3))
+        digits = "".join(random.choices(string.digits, k=9))
+        new_mrn = f"P-{digits}{initials}"
 
-RESULTS_STATUS=(
-    ('p','Pending'),
-    ('d','Done'),
-    ('c','Confirmed')
-)
-
-TEST_LEVELS=(
-    ('one','one'),#postive/negative test
-    ('two','two'),#needs explain
-    
-)
+        # Check if the generated MRN already exists
+        if not Patient.objects.filter(mrn=new_mrn).exists():
+            return new_mrn

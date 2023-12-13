@@ -1,29 +1,31 @@
 <span>
-<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {{ patient.name }}
-        </th>
-        <td class="px-6 py-4">
-            {{ patient.medical_record_number }}
-        </td>
-        <td class="px-6 py-4">
-            {{ patient.ward }}
-        </td>
-        <td class="px-6 py-4">
-            <a href="{% url 'view' patient.medical_record_number %}"
-               class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-1 focus:ring-primary-300 font-medium rounded-sm text-sm px-5 py-2 mr-2 mb-2 dark:bg-primary-600 dark:hover-bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Details</a>
-        </td>
-    </tr>
-    </span>
-
-    {% if forloop.last %}
-
-
-<span hx-get="{% url 'patient_mgt' %}?page={{ patients_list.number|add:1 }}"
-    hx-trigger="revealed"
-    hx-swap="afterend" hx-target="this">
+  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th
+      scope="row"
+      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+    >
+      {{ patient.name }}
+    </th>
+    <td class="px-6 py-4">{{ patient.mrn }}</td>
+    <td class="px-6 py-4">{{ patient.ward }}</td>
+    <td class="px-6 py-4">
+      <a
+        href="{% url 'view' patient.mrn %}"
+        class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-1 focus:ring-primary-300 font-medium rounded-sm text-sm px-5 py-2 mr-2 mb-2 dark:bg-primary-600 dark:hover-bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+        >Details</a
+      >
+    </td>
+  </tr>
 </span>
 
+{% if forloop.last %}
 
+<span
+  hx-get="{% url 'patient_mgt' %}?page={{ patients_list.number|add:1 }}"
+  hx-trigger="revealed"
+  hx-swap="afterend"
+  hx-target="this"
+>
+</span>
 
-    {% endif %}
+{% endif %}

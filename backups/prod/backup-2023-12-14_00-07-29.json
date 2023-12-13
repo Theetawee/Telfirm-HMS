@@ -1,0 +1,316 @@
+[ {
+    "model": "accounts.department",
+    "pk": 1,
+    "fields": { "name": "Microbiology" }
+  },
+  {
+    "model": "accounts.department",
+    "pk": 2,
+    "fields": { "name": "Chemistry" }
+  },
+  {
+    "model": "accounts.department",
+    "pk": 3,
+    "fields": { "name": "Immunology" }
+  },
+  {
+    "model": "accounts.department",
+    "pk": 4,
+    "fields": { "name": "Haematology" }
+  },
+  {
+    "model": "accounts.medicalworker",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$91HTYT3cjFM6SPxjEsZpRe$F+orEoS4HP7QLoibXBh86hW/XN4fBySaDxWliuJ0A7w=",
+      "is_superuser": false,
+      "name": "Tester",
+      "email": "tester@telfirmhms.com",
+      "phone": null,
+      "date_joined": "2023-10-24T15:39:34.883Z",
+      "last_login": "2023-11-16T18:23:02.330Z",
+      "is_active": true,
+      "is_staff": false,
+      "date_of_birth": null,
+      "address": null,
+      "specialization": "Other",
+      "license_number": "",
+      "department": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "patients.test",
+    "pk": 1,
+    "fields": { "department": 1, "name": "Hiv Test (HCT, RCT, VCT, PICT)" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 2,
+    "fields": { "department": 2, "name": "BS (For mps)" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 3,
+    "fields": {
+      "department": 1,
+      "name": "BS (For Microfilaria, Tryps, Leishmania)"
+    }
+  },
+  {
+    "model": "patients.test",
+    "pk": 4,
+    "fields": { "department": 2, "name": "BAT" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 5,
+    "fields": { "department": 1, "name": "Widal Test" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 6,
+    "fields": { "department": 1, "name": "VDRL, RPR, TPHA" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 7,
+    "fields": { "department": 1, "name": "H.Pylori Test" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 8,
+    "fields": { "department": 3, "name": "Rheumatoid factor test" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 9,
+    "fields": { "department": 1, "name": "HBsAg Test" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 10,
+    "fields": { "department": 1, "name": "Serum Crag (Cryptococcal antigen)" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 11,
+    "fields": { "department": 3, "name": "CD4, & CD4%" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 12,
+    "fields": { "department": 2, "name": "Serum HCG Test" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 13,
+    "fields": { "department": 1, "name": "Toxoplasmosis" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 14,
+    "fields": { "department": 1, "name": "Gonnorhae" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 15,
+    "fields": { "department": 1, "name": "Blood culture & Sensitivity" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 16,
+    "fields": { "department": 1, "name": "Semen Analysis" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 17,
+    "fields": { "department": 1, "name": "HIV RNA PCR (Viral Load)" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 18,
+    "fields": { "department": 1, "name": "HVS Gram stain" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 19,
+    "fields": { "department": 1, "name": "HVS Culture & Senstivity" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 20,
+    "fields": { "department": 4, "name": "CBC" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 21,
+    "fields": { "department": 4, "name": "Hb" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 22,
+    "fields": { "department": 4, "name": "Sickling Test" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 23,
+    "fields": { "department": 4, "name": "ESR" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 24,
+    "fields": { "department": 4, "name": "Bleeding Time" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 25,
+    "fields": { "department": 4, "name": "Clotting Time" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 26,
+    "fields": { "department": 4, "name": "Prothrombine Time" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 27,
+    "fields": { "department": 4, "name": "Platelet Count" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 28,
+    "fields": { "department": 4, "name": "Blood Grouping" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 29,
+    "fields": { "department": 1, "name": "Lymph Zn for AFBs" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 30,
+    "fields": { "department": 1, "name": "Lymph Gram stain" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 31,
+    "fields": { "department": 2, "name": "Urinalysis" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 32,
+    "fields": { "department": 1, "name": "Gram stain" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 33,
+    "fields": { "department": 1, "name": "Culture & Senstivity" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 34,
+    "fields": { "department": 2, "name": "Urine HCG" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 35,
+    "fields": {
+      "department": 1,
+      "name": "Stool analysis (Wet/Iodine- Preparation)"
+    }
+  },
+  {
+    "model": "patients.test",
+    "pk": 36,
+    "fields": { "department": 1, "name": "Stool Culture & Senstivity" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 37,
+    "fields": { "department": 1, "name": "Modified Zn (For Oocysts)" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 38,
+    "fields": { "department": 2, "name": "Sudan III test (For stool Fat)" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 39,
+    "fields": { "department": 1, "name": "Sputum Zn for AFBs" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 40,
+    "fields": { "department": 1, "name": "Sptum Culture & Senstivity" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 41,
+    "fields": { "department": 1, "name": "Brest milk gram stain" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 42,
+    "fields": { "department": 1, "name": "Breast milk Culture and Senstivity" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 43,
+    "fields": { "department": 1, "name": "Biopsy Gram / Zn stain" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 44,
+    "fields": { "department": 1, "name": "KOH + Calcoflour (fungal hypae)" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 45,
+    "fields": { "department": 1, "name": "Biopsy Culture & Senstivity" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 46,
+    "fields": { "department": 2, "name": "Random Blood Sugars" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 47,
+    "fields": { "department": 2, "name": "Fasting Blood Sugars" }
+  },
+  {
+    "model": "patients.test",
+    "pk": 48,
+    "fields": {
+      "department": 2,
+      "name": "Renal Functional tests: Sodium, Potassium, Chloride, Creatine, Urea"
+    }
+  },
+  {
+    "model": "patients.test",
+    "pk": 49,
+    "fields": {
+      "department": 2,
+      "name": "Liver Functional Tests: GOT, GPT, ALP, Alb, TP, BIL"
+    }
+  },
+  {
+    "model": "patients.test",
+    "pk": 50,
+    "fields": {
+      "department": 2,
+      "name": "Pancreatic Functional tests (PFTs): Amylase, Lipase, Glucose"
+    }
+  },
+  {
+    "model": "patients.test",
+    "pk": 51,
+    "fields": {
+      "department": 2,
+      "name": "Lipid Profile (LP): Cholesterol, HDL, LDL, Triglycerides"
+    }
+  }
+]

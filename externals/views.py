@@ -9,6 +9,8 @@ from django.contrib import messages
 def index(request):
     title = "Telfirm Hospital Management System."
     description = "Transform healthcare administration with Telfirm Hospital Management System. Streamline patient care and optimize operations."
+    if request.user.is_authenticated:
+        return redirect('dashboard')
     context = {"title": title, "description": description}
     return render(request, "externals/index.html", context)
 

@@ -1,58 +1,52 @@
-{% extends 'base/base.html' %}
-{% load redotags %}
-{% block head %}
-    <title>{{patient.name}}'s Results | Telfirm HMS</title>
-{% endblock %}
-
-
-{% block content %}
+{% extends 'base/base.html' %} {% load redotags %} {% block head %}
+<title>{{patient.name}}'s Results | Telfirm HMS</title>
+{% endblock %} {% block content %}
 
 <section class="px-8 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div>
-            <div class="bg-white p-4 rounded-xl">
-            <h1 class="text-xl mb-2">Patient Information</h1>
-            <ul class="list-disc pl-4">
-                <li>Name: {{ patient.name }}</li>
-                <li>Gender: {{ patient.gender }}</li>
-                <li>MRN: {{ patient.medical_record_number }}</li>
-                <li>Date of Birth: {{ patient.date_of_birth }} ({{ patient.age }})</li>
-                <li>Ward: {{ patient.ward }}</li>
-                <li>Registered on: {{ patient.admission_date }}</li>
-            </ul>
-            </div>
-        </div>
-        <div class="bg-white p-4 rounded-xl">
-            <h2 class="text-xl">Allergies</h2>
-            {% if patient.allergies %}
-                <p>{{ patient.allergies }}</p>
-            {% else %}
-                <p class="text-red-500">No allergies</p>
-            {% endif %}
-        </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div>
+      <div class="bg-white p-4 rounded-xl">
+        <h1 class="text-xl mb-2">Patient Information</h1>
+        <ul class="list-disc pl-4">
+          <li>Name: {{ patient.name }}</li>
+          <li>Gender: {{ patient.gender }}</li>
+          <li>MRN: {{ patient.mrn }}</li>
+          <li>
+            Date of Birth: {{ patient.date_of_birth }} ({{ patient.age }})
+          </li>
+          <li>Ward: {{ patient.ward }}</li>
+          <li>Registered on: {{ patient.admission_date }}</li>
+        </ul>
+      </div>
     </div>
+    <div class="bg-white p-4 rounded-xl">
+      <h2 class="text-xl">Allergies</h2>
+      {% if patient.allergies %}
+      <p>{{ patient.allergies }}</p>
+      {% else %}
+      <p class="text-red-500">No allergies</p>
+      {% endif %}
+    </div>
+  </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div class="bg-white p-4 rounded-xl">
-            <h2 class="text-xl">Medical Conditions</h2>
-            {% if patient.medical_conditions %}
-                <p>{{ patient.medical_conditions|linebreaks }}</p>
-            {% else %}
-                <p class="text-red-500">No medical conditions</p>
-            {% endif %}
-        </div>
-        <div class="bg-white rounded-xl p-4">
-            <h2 class="text-xl">Current Medications</h2>
-            {% if patient.current_medications %}
-                <p>{{ patient.current_medications|linebreaks }}</p>
-            {% else %}
-                <p class="text-red-500">No medications</p>
-            {% endif %}
-        </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white p-4 rounded-xl">
+      <h2 class="text-xl">Medical Conditions</h2>
+      {% if patient.medical_conditions %}
+      <p>{{ patient.medical_conditions|linebreaks }}</p>
+      {% else %}
+      <p class="text-red-500">No medical conditions</p>
+      {% endif %}
     </div>
+    <div class="bg-white rounded-xl p-4">
+      <h2 class="text-xl">Current Medications</h2>
+      {% if patient.current_medications %}
+      <p>{{ patient.current_medications|linebreaks }}</p>
+      {% else %}
+      <p class="text-red-500">No medications</p>
+      {% endif %}
+    </div>
+  </div>
 </section>
-
-
-
 
 {% endblock %}
