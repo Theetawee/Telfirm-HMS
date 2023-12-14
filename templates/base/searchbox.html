@@ -1,0 +1,8 @@
+<form method="post" hx-post="{% url 'search' %}" class="w-full">  
+                {% csrf_token %} 
+                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                <div class="flex items-center gap-2">
+                    <input type="search" name="patient" hx-include="#loader" hx-swap="outerHTML transition:true" {% if autofocus %} autofocus {% endif %} hx-post="{% url 'search' %}" hx-target="#results" hx-trigger="keyup changed delay:700ms"   value="{{request.POST.patient}}" autocomplete="on" id="default-search" class="block  px-4 w-full py-2 text-sm text-gray-900 border border-gray-200 rounded-md bg-gray-50 focus:ring-primary-500 focus:right-1 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search patient by name or MRN..." required>
+                    
+                </div>
+            </form>

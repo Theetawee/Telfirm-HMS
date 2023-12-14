@@ -1,47 +1,20 @@
-from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from django.db.models import Q
 from django.core.paginator import Paginator
-from patients.models import Patient, Result
+from patients.models import Patient
 from django.db.models import Count
 
-
-def index(request):
-    if not request.user.is_authenticated:
-        return render(request, "main/intro.html")
-    else:
-        patients_list = Patient.objects.all()
-        p = Paginator(patients_list, 10)
-        page = int(request.GET.get("page", 1))
-        patients = p.get_page(page)
-        context = {"patients": patients, "patients_num": patients_list.count()}
-    return render(request, "main/index.html", context)
-
-
-def load_more(request):
-    patients_list = Patient.objects.all()
-    p = Paginator(patients_list, 10)
-    page = int(request.GET.get("page", 1))
-    patients = p.get_page(page)
-    context = {
-        "patients": patients,
-    }
-    return render(request, "main/sect.htmx.html", context)
-
-
-def intro(request):
-    return render(request, "main/intro.html")
 
 
 def search(request):
     patient = request.POST.get("patient").upper()
-
+    af=True
     patient_qs = Patient.objects.filter(
         Q(mrn__exact=patient)
         | Q(first_name__icontains=patient)
         | Q(last_name__icontains=patient)
     )
-    context = {"patients": patient_qs}
+    context = {"patients": patient_qs,'autofocus':af}
     return render(request, "main/search.html", context)
 
 

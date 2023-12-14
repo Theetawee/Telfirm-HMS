@@ -1,1 +1,25 @@
-{% include 'main/sect.htmx.html' %}
+
+<!-- Main modal -->
+<div id="static-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto h-screen bg-white overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full">
+    <div class="p-8 flex items-center justify-between">
+        <p class="text-3xl font-light">Search results for "{{request.POST.patient}}"</p>
+        <button class="px-5 py-2 bg-gray-800 rounded text-white" hx-target="#body" hx-get="{% url 'dashboard' %}">Close</button>
+    </div>
+    <div class="relative p-4 w-full mx-auto max-w-screen-2xl  max-h-full">
+        <!-- Modal content -->
+        <div class="relative dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center max-w-screen-lg mx-auto justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                
+                {% include 'base/searchbox.html' %}
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4">
+                {% include 'dashboard/htmx/patient_table.html' %}
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<span id="results"></span>

@@ -41,7 +41,6 @@ def new_patient(request):
 @login_required
 def view_patient(request, mrn):
     patient = get_object_or_404(Patient, mrn=mrn)
-
     results = Result.objects.select_related("patient", "test").filter(patient=patient)
     referring_url = request.META.get("HTTP_REFERER", "/")
 

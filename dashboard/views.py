@@ -9,13 +9,13 @@ from django.conf import settings
 
 # Create your views here.
 
-
+@login_required
 def dashboard_view(request):
     patients = Patient.objects.all().count()
     context = {"total_patients": patients}
     return render(request, "dashboard/index.html", context)
 
-
+@login_required
 def search_view(request):
     patient = request.POST.get("patient").upper()
 
@@ -27,7 +27,7 @@ def search_view(request):
     context = {"patients": patient_qs}
     return render(request, "main/search.html", context)
 
-
+@login_required
 def load_patients(request):
     context = {}
     patients_list = Patient.objects.all()
@@ -48,7 +48,7 @@ def load_patients(request):
 
     return render(request, "dashboard/htmx/patients_load.html", context)
 
-
+@login_required
 def load_patients_page(request):
     context = {}
     patients_list = Patient.objects.all()
