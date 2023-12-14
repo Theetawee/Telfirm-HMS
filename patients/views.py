@@ -42,44 +42,34 @@ def new_patient(request):
 def view_patient(request, mrn):
     patient = get_object_or_404(Patient, mrn=mrn)
     results = Result.objects.select_related("patient", "test").filter(patient=patient)
-    referring_url = request.META.get("HTTP_REFERER", "/")
-
-    if request.method == "POST":
-        test_id = request.POST.get("test")
-        result = request.POST.get("result")
-        comment = request.POST.get("comment")
-
-        try:
-            test = Test.objects.get(id=test_id)
-        except Test.DoesNotExist:
-            return HttpResponseBadRequest("Invalid test ID")
-
-        test_result, created = Result.objects.get_or_create(
-            patient=patient, test=test, done=False
-        )
-        test_result.results = result
-        test_result.comment = comment
-        test_result.date = timezone.now()
-        test_result.done = True
-        test_result.done_by = request.user
-        test_result.save()
-        return redirect(referring_url)
-
     context = {
         "patient": patient,
         "results": results,
     }
 
-    return render(request, "patients/results.html", context)
+    return render(request, "patients/view.html", context)
 
 
 @login_required
 def view_results(request, test_id, patient_id):
     test = Test.objects.get(id=test_id)
     patient = get_object_or_404(Patient, id=patient_id)
-    results = get_object_or_404(Result, test=test, patient=patient)
-    context = {"results": results}
-    return render(request, "patients/view.html", context)
+    result = get_object_or_404(Result, test=test, patient=patient)
+    if request.POST:
+        rapid_tr=request.POST.get('rapid_tr')
+        standard_tr=request.POST.get('standard_tr')
+        other_comments=request.POST.get('other_comments')
+        result.rapid_tr=rapid_tr
+        result.standard_tr=standard_tr
+        result.comment=other_comments
+        result.done_by=request.user
+        result.date=timezone.now()
+        result.done=True
+        result.save()
+        messages.success(request,'Results added successfully')
+        return redirect('view',mrn=patient.mrn)
+    context = {"result": result,'patient':patient}
+    return render(request, "patients/result.html", context)
 
 
 class PatientListView(ListView):

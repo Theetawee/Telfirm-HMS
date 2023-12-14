@@ -1,0 +1,63 @@
+
+<!-- Main modal -->
+<div id="static-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto h-screen bg-white overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 max-h-full">
+    <div class="p-8 flex items-center justify-between">
+        <button class="px-5 py-2 bg-gray-800 rounded text-white" hx-target="#body" hx-get="{% url 'view' patient.mrn %}">Close</button>
+    </div>
+    <div class="relative p-4 w-full mx-auto max-w-screen-2xl  max-h-full">
+        <!-- Modal content -->
+        <div class="relative dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="max-w-screen-lg mx-auto p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <p class="text-3xl mb-4">Patient: {{patient.name}} ({{patient.mrn}})</p>
+                <p class="text-3xl">Test: {{result.test.name}}</p>
+            </div>
+            <!-- Modal body -->
+            <form action="{% url 'results' result.test.pk patient.pk %}" method="post" hx-post="{% url 'results' result.test.pk patient.pk %}" hx-target="#body" hx-indicator="#loader" hx-swap="outerHTML transition:true">
+              {% csrf_token %}
+            <div class="p-4 md:p-5 max-w-screen-lg mx-auto space-y-4">
+              <p class="text-xl font-light">Test results</p>
+
+              {% if result.test.test_type == 'R' %}
+                
+  <div class="flex items-center mb-4">
+    <input id="default-radio-1" type="radio" value="P" name="rapid_tr" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="default-radio-1" class="ms-2 text-lg  text-gray-900 dark:text-gray-300">Reactive</label>
+  </div>
+
+  <div class="flex items-center mb-4">
+    <input id="default-radio-2" type="radio" value="N" name="rapid_tr" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    <label for="default-radio-2" class="ms-2 text-lg  text-gray-900 dark:text-gray-300">Non-reactive</label>
+  </div>
+  {% else %}
+
+<div>
+<label for="str" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Standard Test results
+  {% if result.test.units %}
+  ({{result.test.units}})
+  {% endif %}
+</label>
+<textarea id="str" rows="4" name="standard_tr" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write the test results here" required></textarea>
+</div>
+
+
+
+              {% endif %}
+
+
+<div>
+<label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Other comments</label>
+<textarea id="message" rows="4" name="other_comments" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write any other comments or suggestions here..." required></textarea>
+</div>
+
+
+        <button class="px-5 py-2 bg-primary-500 rounded text-white" type="submit">Submit</button>
+
+
+
+            </div>
+         </form>   
+        </div>
+    </div>
+</div>
+

@@ -7,9 +7,11 @@ from pharmacy.models import Prescription
 
 
 class Test(models.Model):
+    TEST_TYPES=(("R", "Rapid"), ("S", "Standard"))
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-
+    units=models.CharField(max_length=20,blank=True,null=True)
+    test_type=models.CharField(max_length=20,choices=TEST_TYPES,default="R")
     @property
     def has_results(self, patient):
         if Result.objects.filter(test=self, patient=patient).exists():
@@ -93,23 +95,25 @@ class Patient(models.Model):
 
 
 class Result(models.Model):
-    RESULTS_FAST = (("P", "POSTIVE"), ("N", "NEGATIVE"))
+    RAPID_TEST_RESULTS = (("P", "POSTIVE"), ("N", "NEGATIVE"))
 
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
-    results = models.CharField(
+    rapid_tr = models.CharField(
         null=True,
         blank=True,
-        choices=RESULTS_FAST,
+        choices=RAPID_TEST_RESULTS,
         max_length=100,
-        verbose_name="Test result",
+        verbose_name="Rapid Test result",
     )
+    standard_tr=models.TextField(null=True,blank=True,verbose_name="Standard Test results")
     comment = models.TextField(null=True, blank=True, verbose_name="Comment")
     date = models.DateTimeField(blank=True, null=True)
     done_by = models.ForeignKey(
         MedicalWorker, on_delete=models.SET_NULL, null=True, blank=True
     )
     done = models.BooleanField(default=False)
+    confirmed=models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.patient.name}'s results -{self.test.name}"
