@@ -1,0 +1,62 @@
+<section class="py-8 px-4">
+  <div>
+    <h2 class="text-2xl font-light mb-8">Recent Patients</h2>
+    <div>
+      <div class="relative overflow-x-auto">
+        <table
+          class="w-full border border-gray-200 rounded text-left rtl:text-right text-gray-500 dark:text-gray-400"
+        >
+          <thead
+            class="text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"
+          >
+            <tr>
+              <th scope="col" class="px-6 py-3">Patient name</th>
+              <th scope="col" class="px-6 py-3">MRN</th>
+              <th scope="col" class="px-6 py-3">Status</th>
+              <th scope="col" class="px-6 py-3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for patient in patients %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {{patient.name}}
+              </th>
+              <td class="px-6 py-4">{{patient.mrn}}</td>
+              <td class="px-6 py-4">
+                {% if patient.undone_tests %}
+                <span
+                  class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3"
+                  ><span
+                    class="flex w-2.5 h-2.5 bg-yellow-300 rounded-full me-1.5 flex-shrink-0"
+                  ></span
+                  >Pending</span
+                >
+                {% else %}
+                <span
+                  class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3"
+                  ><span
+                    class="flex w-2.5 h-2.5 bg-green-500 rounded-full me-1.5 flex-shrink-0"
+                  ></span
+                  >Completed</span
+                >
+                {% endif %}
+              </td>
+              <td class="px-6 py-4">
+                <a
+                  href="#"
+                  class="text-white bg-gray-800 hover:bg-gray-900 px-5 py-2 rounded"
+                  >Details</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

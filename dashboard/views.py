@@ -2,17 +2,18 @@ from django.shortcuts import render
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from patients.models import Patient, Result
 from django.db.models import Count
+from django.conf import settings
 
 # Create your views here.
 
 
 def dashboard_view(request):
-    patients=Patient.objects.all().count()
-    context={'total_patients':patients}
-    return render(request, "dashboard/index.html",context)
+    patients = Patient.objects.all().count()
+    context = {"total_patients": patients}
+    return render(request, "dashboard/index.html", context)
 
 
 def search_view(request):
@@ -28,9 +29,42 @@ def search_view(request):
 
 
 def load_patients(request):
+    context = {}
     patients_list = Patient.objects.all()
-    p = Paginator(patients_list, 2)
-    page = int(request.GET.get("page", 1))
-    patients = p.get_page(page)
-    context = {"patients": patients, "patients_num": patients_list.count()}
+
+    # Handle pagination
+    try:
+        page = request.GET.get("page", 1)
+        paginator = Paginator(patients_list, settings.ENTRIES_PER_PAGE)
+        patients = paginator.get_page(page)
+        context["patients"] = patients
+    except EmptyPage:
+        # If the requested page is out of range, deliver an empty page
+        context["patients"] = Paginator([], 1).get_page(1)
+
+    except PageNotAnInteger:
+        # If page is not an integer, deliver the first page
+        context["patients"] = paginator.get_page(1)
+
     return render(request, "dashboard/htmx/patients_load.html", context)
+
+
+def load_patients_page(request):
+    context = {}
+    patients_list = Patient.objects.all()
+
+    # Handle pagination
+    try:
+        page = request.GET.get("page", 1)
+        paginator = Paginator(patients_list, settings.ENTRIES_PER_PAGE)
+        patients = paginator.get_page(page)
+        context["patients"] = patients
+    except EmptyPage:
+        # If the requested page is out of range, deliver an empty page
+        context["patients"] = Paginator([], 1).get_page(1)
+
+    except PageNotAnInteger:
+        # If page is not an integer, deliver the first page
+        context["patients"] = paginator.get_page(1)
+
+    return render(request, "dashboard/htmx/patients.html", context)

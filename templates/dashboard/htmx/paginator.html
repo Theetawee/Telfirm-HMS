@@ -1,0 +1,20 @@
+
+<section class="py-10">
+    <div class="flex flex-col items-center">
+        <!-- Help text -->
+        <span class="text-sm text-gray-700 dark:text-gray-400">
+            Showing <span class="font-semibold text-gray-900 dark:text-white">{{ patients.start_index }}</span>
+            to <span class="font-semibold text-gray-900 dark:text-white">{{ patients.end_index }}</span>
+            of <span class="font-semibold text-gray-900 dark:text-white">{{ patients.paginator.count }}</span> Entries
+        </span>
+        <!-- Buttons -->
+        <div class="inline-flex mt-2 xs:mt-0">
+            <button {% if patients.has_previous %} hx-target="#patients" hx-indicator="#loader" hx-get="{% url 'load_more' %}?page={{ patients.previous_page_number }}" {% endif %}class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white {% if not patients.has_previous %}opacity-50 cursor-not-allowed{% endif %}">
+                Prev
+            </button>
+            <button {% if patients.has_next %} hx-target="#patients" hx-indicator="#loader" hx-get="{% url 'load_more' %}?page={{ patients.next_page_number }}" {% endif %}class="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white {% if not patients.has_next %}opacity-50 cursor-not-allowed{% endif %}">
+                Next
+            </button>
+        </div>
+    </div>
+</section>

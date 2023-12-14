@@ -239,3 +239,6 @@ if DEBUG:
     BACKUP_DIRECTORY = os.path.join(BASE_DIR, "backups/dev")
 else:
     BACKUP_DIRECTORY = os.path.join(BASE_DIR, "backups/prod")
+
+
+ENTRIES_PER_PAGE = 1
