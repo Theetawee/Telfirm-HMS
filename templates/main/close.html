@@ -1,0 +1,3 @@
+<div class="flex items-center gap-10" id="content-{{notice.id}}">
+                    <button hx-get="{% url 'detail' notice.id %}" hx-target="#content-{{notice.id}}" hx-swap="outerHTML transition:true" hx-indicator="#loader" class="px-5 py-2 bg-blue-500 rounded text-white">Read</button>
+                </div>

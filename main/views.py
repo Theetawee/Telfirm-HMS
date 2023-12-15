@@ -1,58 +1,63 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 from django.db.models import Q
 from django.core.paginator import Paginator
 from patients.models import Patient
 from django.db.models import Count
+from .forms import CreateNoticeForm
+from django.contrib import messages
+from .models import Notice
+from django.contrib.auth.decorators import login_required
 
-
-
+@login_required
 def search(request):
     patient = request.POST.get("patient").upper()
-    af=True
+    af = True
     patient_qs = Patient.objects.filter(
         Q(mrn__exact=patient)
         | Q(first_name__icontains=patient)
         | Q(last_name__icontains=patient)
     )
-    context = {"patients": patient_qs,'autofocus':af}
+    context = {"patients": patient_qs, "autofocus": af}
     return render(request, "main/search.html", context)
 
+@login_required
+def create_notice(request):
+    if request.POST:
+        form = CreateNoticeForm(request.POST)
+        if form.is_valid():
+            notice = form.save()
+            notice.author = request.user
+            notice.save()
+            messages.success(request, "Notice created successfully")
+            return redirect("dashboard")
+    form = CreateNoticeForm()
+    context = {"form": form}
+    return render(request, "main/create_notice.html", context)
 
-def get_pending(request):
-    patients_with_undone_results = Patient.objects.annotate(
-        undone_result_count=Count("result", filter=Q(result__done=False))
-    ).filter(undone_result_count__gt=0)
+@login_required
+def view_notice(request):
+    url = request.META.get("HTTP_REFERER")
+    notices = Notice.objects.all()
+    context = {"notices": notices, "url": url}
+    return render(request, "main/notice.html", context)
 
-    p = Paginator(patients_with_undone_results, 10)
-    page = int(request.GET.get("page", 1))
-    patients = p.get_page(page)
-
-    context = {"patients": patients}
-    return render(request, "main/pending.htmx.html", context)
-
-
-def get_done(request):
-    patients_with_done_results = Patient.objects.annotate(
-        done_result_count=Count("result", filter=Q(result__done=True))
-    ).filter(done_result_count__gt=0)
-
-    p = Paginator(patients_with_done_results, 10)
-    page = int(request.GET.get("page", 1))
-    patients = p.get_page(page)
-
-    context = {"patients": patients}
-    return render(request, "main/done.htmx.html", context)
-
-
-def get_all(request):
-    patients_list = Patient.objects.all()
-    p = Paginator(patients_list, 10)
-    page = int(request.GET.get("page", 1))
-    patients = p.get_page(page)
-
-    context = {"patients": patients}
-    return render(request, "main/all.htmx.html", context)
+@login_required
+def view_notice_detail(request, pk):
+    notice = Notice.objects.get(id=pk)
+    context = {"notice": notice}
+    return render(request, "main/content.html", context)
+@login_required
+def close_notice(request,pk):
+    notice=Notice.objects.get(id=pk)
+    context={"notice":notice}
+    return render(request, "main/close.html",context)
 
 
-def docs(request):
-    return render(request, "main/docs.html")
+
+@login_required
+def mark_read(request,pk):
+    notice=Notice.objects.get(id=pk)
+    notice.read_by.add(request.user)
+    notice.save()
+    return HttpResponse("marked as read")
