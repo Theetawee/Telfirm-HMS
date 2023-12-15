@@ -3083,6 +3083,10 @@ input:checked + .toggle-bg{
     flex-direction: column;
   }
 
+  .md\:flex-nowrap{
+    flex-wrap: nowrap;
+  }
+
   .md\:items-start{
     align-items: flex-start;
   }
