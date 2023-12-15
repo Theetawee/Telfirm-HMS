@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Results</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <script src="{% static 'js/htmx.js' %}"></script>
+    {% include 'base/fonts.html' %}
+</head>
+<body id="body">
+    <div class="p-8 flex items-center print:hidden justify-between">
+        <button class="px-5 py-2 bg-gray-800 rounded text-white" hx-swap="outerHTML transition:true" hx-indicator="#loader" hx-target="#body" hx-get="{% url 'view' patient.mrn %}">Close</button>
+        {% if result.confirmed %}
+        <button class="px-5 py-2 bg-blue-500 rounded text-white" onclick="print()">Print</button>
+        {% endif %}
+    </div>
+    
+    <main>
+        <section class="p-4 max-w-2xl mx-auto h-screen overflow-y-auto print:p-0 print:max-w-full">
+    <div class="w-full h-full bg-white border border-gray-400 rounded px-4 pb-8 pt-4 grid grid-cols-1 gap-4">
+        <!-- Logo and Hospital Name -->
+        <div class="flex items-center justify-between md:flex-col md:items-start">
+            <div class="flex items-center">
+                <!-- Replace 'your_logo.png' with the actual path to your logo image -->
+                <img src="{% static 'images/180.png' %}" alt="Hospital Logo" class="w-16 h-16 mr-4">
+                <h1 class="text-2xl text-gray-700 font-light">Your Hospital Name</h1>
+            </div>
+            <div class="hidden md:block text-sm">
+                <p>Date: {% now 'Y-m-d H:i:s' %}</p>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-xl text-gray-700 mb-2">Patient Name: {{patient.name}}</h2>
+            <div class="flex items-center justify-between">
+                <p>Gender:
+                    {% if patient.gender == 'M' %}Male{% else %}Female{% endif %}
+                      </p>
+                <p>Age:
+                    
+                     {{patient.age}}
+                </p>
+            </div>
+
+        </div>
+        <!-- Test Name -->
+        <div>
+            <h2 class="text-2xl text-center underline uppercase">{{result.test.department.name}} department</h2>
+            
+        </div>
+
+        <!-- Results -->
+        <div>
+            
+
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right border border-gray-200 text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase print:bg-gray-100 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Name of test
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Results
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{result.test.name}}
+                </th>
+                <td class="px-6 py-4">
+                    {% if result.rapid_tr %}
+                    {{result.rapid_tr}}
+                    {% else %}
+                    {{result.standard_tr}}
+                    {% endif %}
+                    {% if result.test.units %}
+                    {{result.test.units}}
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+        </div>
+
+        <!-- Other Comments -->
+        <div>
+            <h3 class="text-lg font-bold mb-2">Other Comments:</h3>
+            <p class="text-base">{{result.comment}}</p>
+        </div>
+
+        <!-- Doctor's Name and Signature -->
+        <div class="flex items-end justify-between">
+            <div>
+                <h3 class="text-lg">Doctor: {{result.done_by.name}}</h3>
+            </div>
+            <div class="text-sm">
+                <!-- Add a line for the doctor's signature -->
+                <div class="mt-4">Doctor's Signature: ____________________</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+</body>
+</html>

@@ -59,12 +59,39 @@
       <h2 class="text-3xl  mb-4">Tests to be done</h2>
 
       {% for result in results %}
-        <div class="mb-6 border-b border-gray-300 pb-4">
+        <div class="mb-6 border-b border-gray-300 grid grid-cols-3 gap-10 pb-4">
           <p class="text-lg  mb-2">Test name: {{ result.test.name }}</p>
-          <p class="text-gray-600 mb-2">Test status: {% if result.done %} <span class="text-green-500">Done</span> {% else %} <span class="text-orange-500">Pending</span> {% endif %}</p>
-          {% if result.done %}
+          <p class="text-gray-600 mb-2">
+            Test status: 
+            {% if result.done and not result.confirmed %} 
+
+
+            <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-orange-500 rounded-full me-1.5 flex-shrink-0"></span>Test complete but results not confirmed</span>
+          
+            {% elif result.done and result.confirmed %}
+
+            <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-green-500 rounded-full me-1.5 flex-shrink-0"></span>Test complete and results confirmed</span>
+          
+
+            {% else %}
+            
+
+            <span class="flex items-center text-sm font-medium text-gray-900 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-red-500 rounded-full me-1.5 flex-shrink-0"></span>Test not yet done</span>
+                      
+
+            {% endif %}
+            </p>
+          {% if result.done and  result.confirmed %}
+          <div>
+          <button hx-get="{% url 'view_results' result.test.pk patient.pk %}" hx-target="#results" hx-indicator="#loader" hx-swap="outerHTML transition:true" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded">View results</button>
+          </div>
+          {% elif result.done and not result.confirmed %}
+          <div>
+          <button hx-get="{% url 'view_results' result.test.pk patient.pk %}" hx-target="#results" hx-indicator="#loader" hx-swap="outerHTML transition:true" class="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded">Confirm results</button>
+          </div>
           {% else %}
-          <button hx-get="{% url 'results' result.test.pk patient.pk %}" hx-target="#results" hx-indicator="#loader" hx-swap="outerHTML transition:true" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">View Test</button>
+          <div>
+          <button hx-get="{% url 'results' result.test.pk patient.pk %}" hx-target="#results" hx-indicator="#loader" hx-swap="outerHTML transition:true" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Add results</button></div>
           {% endif %}
         </div>
         {% empty %}

@@ -85,7 +85,7 @@ class Patient(models.Model):
 
     @property
     def undone_tests(self):
-        if Result.objects.filter(patient=self,done=False).exists():
+        if Result.objects.filter(patient=self,confirmed=False).exists():
             return True
         
         
@@ -117,3 +117,6 @@ class Result(models.Model):
 
     def __str__(self):
         return f"{self.patient.name}'s results -{self.test.name}"
+
+    class Meta:
+        ordering=['done','confirmed']

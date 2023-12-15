@@ -241,4 +241,4 @@ else:
     BACKUP_DIRECTORY = os.path.join(BASE_DIR, "backups/prod")
 
 
-ENTRIES_PER_PAGE = 1
+ENTRIES_PER_PAGE = 10
