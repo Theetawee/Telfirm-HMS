@@ -146,22 +146,21 @@ else:
     # ALLOWED_HOSTS = [''] update allowed hosts for production
 
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "neondb",
-            "USER": "tawee.drake",
-            "PASSWORD": os.environ.get("DB_PASSWORD"),
-            "HOST": "ep-purple-bonus-60535466.eu-central-1.aws.neon.tech",
-            "PORT": "5432",
-            "OPTIONS": {"sslmode": "require"},
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'telfirm',
+        'USER': 'tawee.drake',
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': 'ep-tight-voice-18225908.eu-central-1.aws.neon.tech',
+        'PORT': '5432',
+        'OPTIONS': {'sslmode': 'require'},
+    }
     }
     CLOUDINARY_STORAGE = {
         "CLOUD_NAME": "dnb8rethz",
         "API_KEY": "123456789",
         "API_SECRET": os.environ.get("API_SECRET"),
     }
-
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
     STATIC_URL = "https://theetawee.github.io/lifecarefiles/"
