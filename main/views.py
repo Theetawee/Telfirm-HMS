@@ -60,4 +60,4 @@ def mark_read(request,pk):
     notice=Notice.objects.get(id=pk)
     notice.read_by.add(request.user)
     notice.save()
-    return HttpResponse("marked as read")
+    return redirect("view_notice")

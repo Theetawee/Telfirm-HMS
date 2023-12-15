@@ -4,7 +4,7 @@
 </div>
  <div class="flex items-center gap-10" id="content">
                     <button hx-get="{% url 'close_notice' notice.id %}" hx-target="#content-{{notice.id}}" hx-swap="outerHTML transition:true" hx-indicator="#loader" class="px-5 py-2 bg-gray-700 rounded text-white">Close</button>
-                    <button hx-get="{% url 'mark_read' notice.id %}" hx-target="this" hx-swap="outerHTML transition:true" hx-indicator="#loader" class="px-5 py-2 bg-red-500 rounded text-white">Mark as read</button>
+                    <button hx-get="{% url 'mark_read' notice.id %}" hx-target="#body" hx-swap="outerHTML transition:true" hx-indicator="#loader" class="px-5 py-2 bg-red-500 rounded text-white">Mark as read</button>
                 </div>   
 
 </div>
